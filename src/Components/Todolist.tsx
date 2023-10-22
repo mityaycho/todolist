@@ -3,21 +3,21 @@ import { Button } from "./Button";
 import { subscribe } from "diagnostics_channel";
 
 export type TaskType = {
-	id: number,
-	title: string,
-	isDone: boolean
-}
+	id: number;
+	title: string;
+	isDone: boolean;
+};
 
-type PropsType = {
-	title: string
-	tasks: Array<TaskType>
-}
+export type PropsType = {
+	title: string;
+	tasks: Array<TaskType>;
+	delTasks: (taskId: number) => void;
+};
 
 export function Todolist(props: PropsType) {
 
-	const Button1Foo = (subscriber: string, age: number, adress: string) => {
-		console.log(subscriber, age, adress);
-	};
+	
+	const inputs = props.tasks.map((el) => <li key={el.id}><input type="checkbox" checked={el.isDone} /> <span>{el.title}</span><Button name="x" callBack={() => props.delTasks(el.id)}/></li>)
 
 
 	return (
@@ -28,12 +28,10 @@ export function Todolist(props: PropsType) {
 				<button>+</button>
 			</div>
 			<ul>
-				<li><input type="checkbox" checked={props.tasks[0].isDone} /> <span>{props.tasks[0].title}</span></li>
-				<li><input type="checkbox" checked={props.tasks[1].isDone} /> <span>{props.tasks[1].title}</span></li>
-				<li><input type="checkbox" checked={props.tasks[2].isDone} /> <span>{props.tasks[2].title}</span></li>
+				{inputs}
 			</ul>
 			<div>
-				<Button name={"All"} callBack={() => Button1Foo("Im Dima", 40, "Live in Moscow")} />
+				<Button name={"All"} callBack={() => "hello world"} />
 				<button>Active</button>
 				<button>Completed</button>
 			</div>

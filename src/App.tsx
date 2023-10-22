@@ -1,19 +1,9 @@
 import React, { useState } from 'react';
-import { TaskType, Todolist } from './Components/Todolist';
+import { PropsType, TaskType, Todolist } from './Components/Todolist';
 import { TestFilter } from './TestFilter';
 import './App.css';
 
-let tasks1: Array<TaskType> = [
-	{ id: 1, title: "CSS", isDone: true },
-	{ id: 2, title: "JS", isDone: true },
-	{ id: 3, title: "React", isDone: false }
-];
 
-let tasks2: Array<TaskType> = [
-	{ id: 1, title: "Terminator", isDone: true },
-	{ id: 2, title: "XXX", isDone: false },
-	{ id: 3, title: "Jentlments of fortune", isDone: true }
-];
 
 // const topCars = [
 //   {manufacturer:'BMW', model:'m5cs'},
@@ -24,6 +14,29 @@ let tasks2: Array<TaskType> = [
 // topCars.map((el, i) => console.log(`car: ${el.manufacturer}, model: ${el.model}`));
 
 function App() {
+
+	let [tasks1, delTask1] = useState ([
+		{ id: 1, title: "CSS", isDone: true },
+		{ id: 2, title: "JS", isDone: true },
+		{ id: 3, title: "React", isDone: false }
+	]);
+	
+	let [tasks2, delTask2] = useState ([
+		{ id: 1, title: "Terminator", isDone: true },
+		{ id: 2, title: "XXX", isDone: false },
+		{ id: 3, title: "Jentlments of fortune", isDone: true }
+	]);
+
+	const removeTask = (taskId: number) => {
+		const nextState:Array<TaskType> = [];
+
+		for (let i = 0; i < tasks1.length; i++) {
+			if (tasks1[i].id !== taskId) {
+				nextState.push(tasks1[i]);
+			};
+			delTask1(nextState);
+		};
+	};
 
 	// const [money, setMoney] = useState([
 	// 	{ banknots: 'Dollars', value: 100, number: ' a1234567890' },
@@ -50,8 +63,8 @@ function App() {
 
 	return (
 		<div className="App">
-			<Todolist title="What to learn" tasks={tasks1} />
-			<Todolist title="Movies" tasks={tasks2} />
+			<Todolist title="What to learn" tasks={tasks1} delTasks={removeTask} />
+			{/* <Todolist title="Movies" tasks={tasks2} delTask2={delTask2} /> */}
 
 			{/* <ul>
 				{currentMoney.map((objFromMoneyArr: any, i) => {
