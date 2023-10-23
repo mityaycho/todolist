@@ -34,7 +34,10 @@ export function Todolist(props: PropsType) {
 	const callBackButtonHandler = () => {
 		addMessage(title);
 		setTitle("");
-	}
+	};
+
+
+
 
 
 	return (
@@ -50,8 +53,8 @@ export function Todolist(props: PropsType) {
 			</ul>
 			<div>
 				<Button name={"All"} callBack={() => "hello world"} />
-				<button>Active</button>
-				<button>Completed</button>
+				<Button name={"Active"} callBack={() => "hello world"} />
+				<Button name={"Completed"} callBack={() => "hello world"} />
 			</div>
 		</div>
 	);
