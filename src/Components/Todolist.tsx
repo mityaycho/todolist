@@ -13,6 +13,7 @@ export type PropsType = {
 	title: string;
 	tasks: Array<TaskType>;
 	delTasks: (taskId: number) => void;
+	filterTasks: (value: "all" | "active" | "completed") => void;
 };
 
 export function Todolist(props: PropsType) {
@@ -37,9 +38,6 @@ export function Todolist(props: PropsType) {
 	};
 
 
-
-
-
 	return (
 		<div>
 			<h3>{props.title}</h3>
@@ -52,9 +50,9 @@ export function Todolist(props: PropsType) {
 				{inputs}
 			</ul>
 			<div>
-				<Button name={"All"} callBack={() => "hello world"} />
-				<Button name={"Active"} callBack={() => "hello world"} />
-				<Button name={"Completed"} callBack={() => "hello world"} />
+				<Button name={"All"} callBack={() => props.filterTasks("all")} />
+				<Button name={"Active"} callBack={() => props.filterTasks("active")} />
+				<Button name={"Completed"} callBack={() => props.filterTasks("completed")} />
 			</div>
 		</div>
 	);

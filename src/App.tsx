@@ -15,7 +15,7 @@ import './App.css';
 
 function App() {
 
-	let [tasks1, delTask1] = useState ([
+	let [tasks, delTask] = useState ([
 		{ id: 1, title: "CSS", isDone: true },
 		{ id: 2, title: "JS", isDone: true },
 		{ id: 3, title: "React", isDone: false }
@@ -30,13 +30,23 @@ function App() {
 	const removeTask = (taskId: number) => {
 		const nextState:Array<TaskType> = [];
 
-		for (let i = 0; i < tasks1.length; i++) {
-			if (tasks1[i].id !== taskId) {
-				nextState.push(tasks1[i]);
+		for (let i = 0; i < tasks.length; i++) {
+			if (tasks[i].id !== taskId) {
+				nextState.push(tasks[i]);
 			};
-			delTask1(nextState);
+			delTask(nextState);
 		};
 	};
+
+	let tasksForTodoList = tasks;
+
+	const [filter, setFilter] = useState<"all" | "active" | "completed">("all");
+
+	filter === "active" && (tasksForTodoList = tasks.filter(task => !task.isDone));
+
+	filter === "completed" && (tasksForTodoList = tasks.filter(task => task.isDone));
+
+	const filterTasks = (value:"all" | "active" | "completed") => setFilter(value);
 
 	// const [money, setMoney] = useState([
 	// 	{ banknots: 'Dollars', value: 100, number: ' a1234567890' },
@@ -63,7 +73,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<Todolist title="What to learn" tasks={tasks1} delTasks={removeTask} />
+			<Todolist title="What to learn" tasks={tasksForTodoList} delTasks={removeTask} filterTasks={filterTasks} />
 			{/* <Todolist title="Movies" tasks={tasks2} delTask2={delTask2} /> */}
 
 			{/* <ul>

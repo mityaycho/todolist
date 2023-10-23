@@ -1,8 +1,8 @@
 import React from "react";
 
 type ButtonType = {
-	name: string,
-	callBack: () => void
+	name: string;
+	callBack: () => void;
 };
 
 export function Button(props: ButtonType) {
