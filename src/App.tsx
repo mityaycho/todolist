@@ -28,8 +28,8 @@ function App() {
 	// 	{ id: 3, title: "Jentlments of fortune", isDone: true }
 	// ]);
 
-	function addTask() {
-		const task = { id: v1(), title: "New task", isDone: false };
+	function addTask(title: string) {
+		const task = { id: v1(), title: title, isDone: false };
 		const newTasks = [task, ...tasks];
 		setTasks(newTasks);
 	};
