@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
-import { subscribe } from "diagnostics_channel";
 
 export type TaskType = {
-	id: number;
+	id: string;
 	title: string;
 	isDone: boolean;
 };
@@ -12,7 +11,7 @@ export type TaskType = {
 export type PropsType = {
 	title: string;
 	tasks: Array<TaskType>;
-	delTasks: (taskId: number) => void;
+	delTasks: (taskId: string) => void;
 	filterTasks: (value: "all" | "active" | "completed") => void;
 };
 

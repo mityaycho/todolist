@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PropsType, TaskType, Todolist } from './Components/Todolist';
 import { TestFilter } from './TestFilter';
 import './App.css';
+import { v1 } from 'uuid';
 
 
 
@@ -16,9 +17,9 @@ import './App.css';
 function App() {
 
 	let [tasks, delTask] = useState ([
-		{ id: 1, title: "CSS", isDone: true },
-		{ id: 2, title: "JS", isDone: true },
-		{ id: 3, title: "React", isDone: false }
+		{ id: v1(), title: "CSS", isDone: true },
+		{ id: v1(), title: "JS", isDone: true },
+		{ id: v1(), title: "React", isDone: false }
 	]);
 	
 	let [tasks2, delTask2] = useState ([
@@ -27,7 +28,7 @@ function App() {
 		{ id: 3, title: "Jentlments of fortune", isDone: true }
 	]);
 
-	const removeTask = (taskId: number) => {
+	const removeTask = (taskId: string) => {
 		const nextState:Array<TaskType> = [];
 
 		for (let i = 0; i < tasks.length; i++) {
