@@ -12,7 +12,7 @@ export type PropsType = {
 	title: string;
 	tasks: Array<TaskType>;
 	delTasks: (taskId: string) => void;
-	filterTasks: (value: "all" | "active" | "completed") => void;
+	filterTasks: (value: string) => void;
 	addTask: (title: string) => void;
 };
 
@@ -32,10 +32,15 @@ export function Todolist(props: PropsType) {
 	}
 	const inputs = props.tasks.map((el) => <li key={el.id}><input type="checkbox" checked={el.isDone} /> <span>{el.title}</span><Button name="x" callBack={() => props.delTasks(el.id)}/></li>);
 
-	const callBackButtonHandler = () => {
+	const addTask = () => {
+		props.addTask(title);
 		addMessage(title);
 		setTitle("");
 	};
+
+	const buttons = ["All", "Active", "Completed"];
+
+	const filterTasks = () => buttons.map((el: string) => <Button name={el} callBack={() => props.filterTasks(el)} />);
 
 
 	return (
@@ -43,16 +48,14 @@ export function Todolist(props: PropsType) {
 			<h3>{props.title}</h3>
 			<div>
 				<Input setTitle={setTitle} title={title} />
-				<button onClick={() => props.addTask(title)}>+</button>
+				<Button name = {"+"} callBack={addTask}/>
 				{message.map((el, i) => <div key={i}>{el.message}</div>)}
 			</div>
 			<ul>
 				{inputs}
 			</ul>
 			<div>
-				<Button name={"All"} callBack={() => props.filterTasks("all")} />
-				<Button name={"Active"} callBack={() => props.filterTasks("active")} />
-				<Button name={"Completed"} callBack={() => props.filterTasks("completed")} />
+				{filterTasks()}
 			</div>
 		</div>
 	);

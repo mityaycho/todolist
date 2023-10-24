@@ -47,13 +47,13 @@ function App() {
 
 	let tasksForTodoList = tasks;
 
-	const [filter, setFilter] = useState<"all" | "active" | "completed">("all");
+	const [filter, setFilter] = useState("All");
 
-	filter === "active" && (tasksForTodoList = tasks.filter(task => !task.isDone));
+	filter === "Active" && (tasksForTodoList = tasks.filter(task => !task.isDone));
 
-	filter === "completed" && (tasksForTodoList = tasks.filter(task => task.isDone));
+	filter === "Completed" && (tasksForTodoList = tasks.filter(task => task.isDone));
 
-	const filterTasks = (value:"all" | "active" | "completed") => setFilter(value);
+	const filterTasks = (value:string) => setFilter(value);
 
 
 	// const [money, setMoney] = useState([
