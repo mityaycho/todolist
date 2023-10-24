@@ -16,17 +16,23 @@ import { v1 } from 'uuid';
 
 function App() {
 
-	let [tasks, delTask] = useState ([
+	let [tasks, setTasks] = useState ([
 		{ id: v1(), title: "CSS", isDone: true },
 		{ id: v1(), title: "JS", isDone: true },
 		{ id: v1(), title: "React", isDone: false }
 	]);
 	
-	let [tasks2, delTask2] = useState ([
-		{ id: 1, title: "Terminator", isDone: true },
-		{ id: 2, title: "XXX", isDone: false },
-		{ id: 3, title: "Jentlments of fortune", isDone: true }
-	]);
+	// let [tasks2, delTask2] = useState ([
+	// 	{ id: 1, title: "Terminator", isDone: true },
+	// 	{ id: 2, title: "XXX", isDone: false },
+	// 	{ id: 3, title: "Jentlments of fortune", isDone: true }
+	// ]);
+
+	function addTask() {
+		const task = { id: v1(), title: "New task", isDone: false };
+		const newTasks = [task, ...tasks];
+		setTasks(newTasks);
+	};
 
 	const removeTask = (taskId: string) => {
 		const nextState:Array<TaskType> = [];
@@ -35,7 +41,7 @@ function App() {
 			if (tasks[i].id !== taskId) {
 				nextState.push(tasks[i]);
 			};
-			delTask(nextState);
+			setTasks(nextState);
 		};
 	};
 
@@ -48,6 +54,7 @@ function App() {
 	filter === "completed" && (tasksForTodoList = tasks.filter(task => task.isDone));
 
 	const filterTasks = (value:"all" | "active" | "completed") => setFilter(value);
+
 
 	// const [money, setMoney] = useState([
 	// 	{ banknots: 'Dollars', value: 100, number: ' a1234567890' },
@@ -74,7 +81,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<Todolist title="What to learn" tasks={tasksForTodoList} delTasks={removeTask} filterTasks={filterTasks} />
+			<Todolist title="What to learn" tasks={tasksForTodoList} delTasks={removeTask} filterTasks={filterTasks} addTask={addTask} />
 			{/* <Todolist title="Movies" tasks={tasks2} delTask2={delTask2} /> */}
 
 			{/* <ul>

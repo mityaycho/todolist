@@ -13,6 +13,7 @@ export type PropsType = {
 	tasks: Array<TaskType>;
 	delTasks: (taskId: string) => void;
 	filterTasks: (value: "all" | "active" | "completed") => void;
+	addTask: () => void;
 };
 
 export function Todolist(props: PropsType) {
@@ -42,7 +43,7 @@ export function Todolist(props: PropsType) {
 			<h3>{props.title}</h3>
 			<div>
 				<Input setTitle={setTitle} title={title} />
-				<Button name = {"+"} callBack={callBackButtonHandler}/>
+				<Button name = {"+"} callBack={props.addTask}/>
 				{message.map((el, i) => <div key={i}>{el.message}</div>)}
 			</div>
 			<ul>
