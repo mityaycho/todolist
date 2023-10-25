@@ -38,6 +38,8 @@ export function Todolist(props: PropsType) {
 		setTitle("");
 	};
 
+	const addTaskEnter = (event: React.KeyboardEvent<HTMLInputElement>) => event.key === "Enter" && addTask()
+
 	const buttons = ["All", "Active", "Completed"];
 
 	const filterTasks = () => buttons.map((el: string) => <Button name={el} callBack={() => props.filterTasks(el)} />);
@@ -47,7 +49,7 @@ export function Todolist(props: PropsType) {
 		<div>
 			<h3>{props.title}</h3>
 			<div>
-				<Input setTitle={setTitle} title={title} />
+				<Input setTitle={setTitle} title={title} onKeyDown={addTaskEnter} />
 				<Button name = {"+"} callBack={addTask}/>
 				{message.map((el, i) => <div key={i}>{el.message}</div>)}
 			</div>
