@@ -49,7 +49,7 @@ export function Todolist(props: PropsType) {
 		<div>
 			<h3>{props.title}</h3>
 			<div>
-				<Input setTitle={setTitle} title={title} onKeyDown={addTaskEnter} />
+				<Input setTitle={setTitle} title={title} addTask={addTask} />
 				<Button name = {"+"} callBack={addTask}/>
 				{message.map((el, i) => <div key={i}>{el.message}</div>)}
 			</div>
