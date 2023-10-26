@@ -98,6 +98,6 @@ function App() {
 			<TestFilter sortBanknots={sortBanknots}/> */}
 		</div>
 	);
-}
+};
 
 export default App;
