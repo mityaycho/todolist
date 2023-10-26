@@ -38,7 +38,7 @@ export function Todolist(props: PropsType) {
 		setTitle("");
 	};
 
-	const addTaskEnter = (event: React.KeyboardEvent<HTMLInputElement>) => event.key === "Enter" && addTask()
+	const addTaskEnter = (event: React.KeyboardEvent<HTMLInputElement>) => event.key === "Enter" && addTask();
 
 	const buttons = ["All", "Active", "Completed"];
 
