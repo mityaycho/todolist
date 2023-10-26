@@ -1,7 +1,11 @@
 import React from "react";
 import { Button } from "./Components/Button";
 
-export function TestFilter(props: any) {
+type sortBanknotsType = {
+	sortBanknots: (nameBtn: string) => void;
+};
+
+export function TestFilter(props: sortBanknotsType) {
 	return (
 		<div>
 				<Button name={"all"} callBack={() => props.sortBanknots("all")} />

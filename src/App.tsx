@@ -67,7 +67,7 @@ function App() {
 	// 	{ banknots: 'RUBLS', value: 50, number: ' v1234567890' },
 	// ]);
 
-	// const [fltr, setFilter] = useState("all");
+	// const [fltr, setFltr] = useState("all");
 
 	// let currentMoney = money;
 
@@ -77,7 +77,7 @@ function App() {
 	// 	fltr === "dollar" &&
 	// 	(currentMoney = money.filter((filteredMoney) => filteredMoney.banknots === "Dollars"))
 
-	// const sortBanknots = (nameBtn: string) => setFilter(nameBtn);
+	// const sortBanknots = (nameBtn: string) => setFltr(nameBtn);
 
 	return (
 		<div className="App">
@@ -85,7 +85,7 @@ function App() {
 			{/* <Todolist title="Movies" tasks={tasks2} delTask2={delTask2} /> */}
 
 			{/* <ul>
-				{currentMoney.map((objFromMoneyArr: any, i) => {
+				{currentMoney.map((objFromMoneyArr: {banknots: string, value: number, number: string}, i) => {
 					return (
 						<li key={i}>
 							<span> {objFromMoneyArr.banknots} </span>
@@ -95,7 +95,7 @@ function App() {
 					)
 				})}
 			</ul>
-			<TestFilter sortBanknots={sortBanknots}/> */}
+			<TestFilter sortBanknots={sortBanknots} /> */}
 		</div>
 	);
 };
