@@ -42,7 +42,7 @@ export function Todolist(props: PropsType) {
 
 	const buttons = ["All", "Active", "Completed"];
 
-	const filterTasks = () => buttons.map((el: string) => <Button name={el} callBack={() => props.filterTasks(el)} />);
+	const filterTasksButtons = () => buttons.map((el: string) => <Button name={el} callBack={() => props.filterTasks(el)} />);
 
 
 	return (
@@ -57,7 +57,7 @@ export function Todolist(props: PropsType) {
 				{inputs}
 			</ul>
 			<div>
-				{filterTasks()}
+				{filterTasksButtons()}
 			</div>
 		</div>
 	);
