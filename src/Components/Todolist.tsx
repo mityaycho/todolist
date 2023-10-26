@@ -22,14 +22,15 @@ export function Todolist(props: PropsType) {
 		{message: "message1"},
 		{message: "message2"},
 		{message: "message3"}
-	])
+	]);
 
 	let [title, setTitle] = useState('');
 
 	const addMessage = (title: string) => {
 		let newMessage = {message: title};
-		setMessage([newMessage, ...message])
-	}
+		setMessage([newMessage, ...message]);
+	};
+
 	const inputs = props.tasks.map((el) => <li key={el.id}><input type="checkbox" checked={el.isDone} /> <span>{el.title}</span><Button name="x" callBack={() => props.delTasks(el.id)}/></li>);
 
 	const addTask = () => {
