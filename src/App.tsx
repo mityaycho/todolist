@@ -46,7 +46,7 @@ function App() {
 	};
 
 	const changeTaskStatus = (id: string, isDone: boolean) => {
-		
+
 	};
 
 	let tasksForTodoList = tasks;
@@ -85,7 +85,14 @@ function App() {
 
 	return (
 		<div className="App">
-			<Todolist title="What to learn" tasks={tasksForTodoList} delTasks={removeTask} filterTasks={filterTasks} addTask={addTask} />
+			<Todolist 
+			title="What to learn" 
+			tasks={tasksForTodoList} 
+			delTasks={removeTask} 
+			filterTasks={filterTasks} 
+			addTask={addTask} 
+			changeTaskStatus={changeTaskStatus}
+			/>
 			{/* <Todolist title="Movies" tasks={tasks2} delTask2={delTask2} /> */}
 
 			{/* <ul>
