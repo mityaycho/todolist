@@ -45,8 +45,8 @@ function App() {
 		};
 	};
 
-	const changeTaskStatus = () => {
-
+	const changeTaskStatus = (id: string, isDone: boolean) => {
+		
 	};
 
 	let tasksForTodoList = tasks;

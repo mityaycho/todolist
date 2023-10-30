@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, KeyboardEvent } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
 
@@ -39,7 +39,7 @@ export function Todolist(props: PropsType) {
 		setTitle("");
 	};
 
-	const addTaskEnter = (event: React.KeyboardEvent<HTMLInputElement>) => event.key === "Enter" && addTask();
+	const addTaskEnter = (event: KeyboardEvent<HTMLInputElement>) => event.key === "Enter" && addTask();
 
 	const buttons = ["All", "Active", "Completed"];
 
