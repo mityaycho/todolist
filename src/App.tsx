@@ -46,7 +46,9 @@ function App() {
 	};
 
 	const changeTaskStatus = (id: string, isDone: boolean) => {
-
+		tasks.map(el => {
+			el.id === id && (el.isDone = isDone);
+		})
 	};
 
 	let tasksForTodoList = tasks;
