@@ -45,6 +45,10 @@ function App() {
 		};
 	};
 
+	const changeTaskStatus = () => {
+
+	};
+
 	let tasksForTodoList = tasks;
 
 	const [filter, setFilter] = useState("All");
