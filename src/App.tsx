@@ -46,11 +46,11 @@ function App() {
 	};
 
 	const changeTaskStatus = (id: string, isDone: boolean) => {
-		let tasksCopy = tasks;
+		const tasksCopy = tasks;
 		tasksCopy.map(el => {
-			el.id === id && (el.isDone = isDone);
+			el.id === id && (el.isDone = !isDone);
 		});
-		setTasks([...tasks]);
+		setTasks([...tasksCopy]);
 	};
 
 	let tasksForTodoList = tasks;

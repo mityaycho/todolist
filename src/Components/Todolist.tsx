@@ -32,11 +32,7 @@ export function Todolist(props: PropsType) {
 		setMessage([newMessage, ...message]);
 	};
 
-	const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => {
-		props.changeTaskStatus(e.currentTarget.id, e.target.checked);
-	}
-
-	const inputs = props.tasks.map((el) => <li key={el.id}><input type="checkbox" checked={el.isDone} onChange={changeTaskStatus}/> <span>{el.title}</span><Button name="x" callBack={() => props.delTasks(el.id)}/></li>);
+	const inputs = props.tasks.map((el) => <li key={el.id}><input type="checkbox" checked={el.isDone} onChange={() => props.changeTaskStatus(el.id, el.isDone)}/> <span>{el.title}</span><Button name="x" callBack={() => props.delTasks(el.id)}/></li>);
 
 	const addTask = () => {
 		props.addTask(title);
