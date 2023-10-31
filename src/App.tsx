@@ -57,7 +57,6 @@ function App() {
 			el.id === id && (el.isDone = !isDone);
 		});
 		setTasks([...tasksCopy]);
-		console.log(error)
 	};
 
 	let tasksForTodoList = tasks;
@@ -98,6 +97,7 @@ function App() {
 		<div className="App">
 			<Todolist 
 			title="What to learn" 
+			filter={filter} 
 			error={error} 
 			setError={changeSetError} 
 			tasks={tasksForTodoList} 

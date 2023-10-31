@@ -11,11 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.error {
-	border: red 1px solid;
-}
-
-.error-message {
-	color: red;
-}

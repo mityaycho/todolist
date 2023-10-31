@@ -11,6 +11,7 @@ export type TaskType = {
 export type PropsType = {
 	title: string;
 	tasks: Array<TaskType>;
+	filter: string;
 	error: string | null | undefined;
 	setError: () => void;
 	delTasks: (taskId: string) => void;
@@ -34,7 +35,7 @@ export function Todolist(props: PropsType) {
 		setMessage([newMessage, ...message]);
 	};
 
-	const inputs = props.tasks.map((el) => <li key={el.id}><input type="checkbox" checked={el.isDone} onChange={() => props.changeTaskStatus(el.id, el.isDone)}/> <span>{el.title}</span><Button name="x" callBack={() => props.delTasks(el.id)}/></li>);
+	const inputs = props.tasks.map((el) => <li key={el.id}><input type="checkbox" checked={el.isDone} onChange={() => props.changeTaskStatus(el.id, el.isDone)}/> <span>{el.title}</span><Button classNameStatus="" name="x" callBack={() => props.delTasks(el.id)}/></li>);
 
 	const addTask = () => {
 		props.addTask(title);
@@ -46,7 +47,7 @@ export function Todolist(props: PropsType) {
 
 	const buttons = ["All", "Active", "Completed"];
 
-	const filterTasksButtons = () => buttons.map((el: string) => <Button name={el} callBack={() => props.filterTasks(el)} />);
+	const filterTasksButtons = () => buttons.map((el: string) => <Button classNameStatus={el === props.filter ? "active-filter" : ""} name={el} callBack={() => props.filterTasks(el)} />);
 
 
 	return (
@@ -60,7 +61,7 @@ export function Todolist(props: PropsType) {
 				error={props.error} 
 				setError={props.setError} 
 				/>
-				<Button name = {"+"} callBack={addTask}/>
+				<Button classNameStatus="" name = {"+"} callBack={addTask}/>
 				{props.error && <div className="error-message">{props.error}</div>}
 				{message.map((el, i) => <div key={i}>{el.message}</div>)}
 			</div>

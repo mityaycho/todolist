@@ -8,9 +8,9 @@ type sortBanknotsType = {
 export function TestFilter(props: sortBanknotsType) {
 	return (
 		<div>
-				<Button name={"all"} callBack={() => props.sortBanknots("all")} />
+				{/* <Button name={"all"} callBack={() => props.sortBanknots("all")} />
 				<Button name={"ruble"} callBack={() => props.sortBanknots("ruble")} />
-				<Button name={"dollar"} callBack={() => props.sortBanknots("dollar")} />
+				<Button name={"dollar"} callBack={() => props.sortBanknots("dollar")} /> */}
 			</div>
 	);
 };
