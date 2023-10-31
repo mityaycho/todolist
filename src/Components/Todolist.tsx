@@ -11,6 +11,8 @@ export type TaskType = {
 export type PropsType = {
 	title: string;
 	tasks: Array<TaskType>;
+	error: string | null | undefined;
+	setError: () => void;
 	delTasks: (taskId: string) => void;
 	filterTasks: (value: string) => void;
 	addTask: (title: string) => void;
@@ -51,8 +53,15 @@ export function Todolist(props: PropsType) {
 		<div>
 			<h3>{props.title}</h3>
 			<div>
-				<Input setTitle={setTitle} title={title} addTask={addTask} />
+				<Input 
+				setTitle={setTitle} 
+				title={title} 
+				addTask={addTask} 
+				error={props.error} 
+				setError={props.setError} 
+				/>
 				<Button name = {"+"} callBack={addTask}/>
+				{props.error && <div className="error-message">{props.error}</div>}
 				{message.map((el, i) => <div key={i}>{el.message}</div>)}
 			</div>
 			<ul>

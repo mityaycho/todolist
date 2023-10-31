@@ -16,11 +16,17 @@ import { v1 } from 'uuid';
 
 function App() {
 
-	let [tasks, setTasks] = useState ([
+	const [tasks, setTasks] = useState ([
 		{ id: v1(), title: "CSS", isDone: true },
 		{ id: v1(), title: "JS", isDone: true },
 		{ id: v1(), title: "React", isDone: false }
 	]);
+
+	const [error, setError] = useState<string |null | undefined>(null);
+
+	const changeSetError = () => {
+		setError(null);
+	}
 	
 	// let [tasks2, delTask2] = useState ([
 	// 	{ id: 1, title: "Terminator", isDone: true },
@@ -31,7 +37,7 @@ function App() {
 	function addTask(title: string) {
 		const task = { id: v1(), title: title.trim(), isDone: false };
 		const newTasks = [task, ...tasks];
-		title.trim() !== "" && setTasks(newTasks);
+		title.trim() !== "" ? setTasks(newTasks) : setError("Title is required");
 	};
 
 	const removeTask = (taskId: string) => {
@@ -51,6 +57,7 @@ function App() {
 			el.id === id && (el.isDone = !isDone);
 		});
 		setTasks([...tasksCopy]);
+		console.log(error)
 	};
 
 	let tasksForTodoList = tasks;
@@ -91,6 +98,8 @@ function App() {
 		<div className="App">
 			<Todolist 
 			title="What to learn" 
+			error={error} 
+			setError={changeSetError} 
 			tasks={tasksForTodoList} 
 			delTasks={removeTask} 
 			filterTasks={filterTasks} 
