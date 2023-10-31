@@ -31,7 +31,7 @@ function App() {
 	function addTask(title: string) {
 		const task = { id: v1(), title: title, isDone: false };
 		const newTasks = [task, ...tasks];
-		setTasks(newTasks);
+		title.trim() !== "" && setTasks(newTasks);
 	};
 
 	const removeTask = (taskId: string) => {
