@@ -29,7 +29,7 @@ function App() {
 	// ]);
 
 	function addTask(title: string) {
-		const task = { id: v1(), title: title, isDone: false };
+		const task = { id: v1(), title: title.trim(), isDone: false };
 		const newTasks = [task, ...tasks];
 		title.trim() !== "" && setTasks(newTasks);
 	};
