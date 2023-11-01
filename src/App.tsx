@@ -22,7 +22,7 @@ function App() {
 		{ id: v1(), title: "React", isDone: false }
 	]);
 
-	const [error, setError] = useState<string |null | undefined>(null);
+	const [error, setError] = useState<string | null | undefined>(null);
 
 	const changeSetError = () => {
 		setError(null);
