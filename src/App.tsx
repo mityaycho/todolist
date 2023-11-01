@@ -26,7 +26,7 @@ function App() {
 
 	const changeSetError = () => {
 		setError(null);
-	}
+	};
 	
 	// let [tasks2, delTask2] = useState ([
 	// 	{ id: 1, title: "Terminator", isDone: true },
