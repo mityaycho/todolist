@@ -1,18 +1,8 @@
 import React, { useState } from 'react';
-import { PropsType, TaskType, Todolist } from './Components/Todolist';
-import { TestFilter } from './TestFilter';
+import { TaskType, Todolist } from './Components/Todolist';
 import './App.css';
 import { v1 } from 'uuid';
 
-
-
-// const topCars = [
-//   {manufacturer:'BMW', model:'m5cs'},
-//   {manufacturer:'Mercedes', model:'e63s'},
-//   {manufacturer:'Audi', model:'rs6'}
-// ];
-
-// topCars.map((el, i) => console.log(`car: ${el.manufacturer}, model: ${el.model}`));
 
 function App() {
 
@@ -27,12 +17,6 @@ function App() {
 	const changeSetError = () => {
 		setError(null);
 	};
-	
-	// let [tasks2, delTask2] = useState ([
-	// 	{ id: 1, title: "Terminator", isDone: true },
-	// 	{ id: 2, title: "XXX", isDone: false },
-	// 	{ id: 3, title: "Jentlments of fortune", isDone: true }
-	// ]);
 
 	function addTask(title: string) {
 		const task = { id: v1(), title: title.trim(), isDone: false };
