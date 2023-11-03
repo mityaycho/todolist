@@ -1,4 +1,4 @@
-import React, { useState, KeyboardEvent, ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
 
@@ -35,7 +35,11 @@ export function Todolist(props: PropsType) {
 		setMessage([newMessage, ...message]);
 	};
 
-	const inputs = props.tasks.map((el) => <li key={el.id} className={el.isDone ? "is-done" : ""}><input type="checkbox" checked={el.isDone} onChange={() => props.changeTaskStatus(el.id, el.isDone)}/> <span>{el.title}</span><Button classNameStatus="" name="x" callBack={() => props.delTasks(el.id)}/></li>);
+	const onChangeHandler = (id: string, event: ChangeEvent<HTMLInputElement>) => {
+		props.changeTaskStatus(id, event.currentTarget.checked);
+	};
+
+	const inputs = props.tasks.map((el) => <li key={el.id} className={el.isDone ? "is-done" : ""}><input type="checkbox" checked={el.isDone} onChange={(e) => onChangeHandler(el.id, e)}/> <span>{el.title}</span><Button classNameStatus="" name="x" callBack={() => props.delTasks(el.id)}/></li>);
 
 	const addTask = () => {
 		props.addTask(title);

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent } from "react";
+import React, { KeyboardEvent } from "react";
 
 type InputPropsType = {
 	title: string;
@@ -10,10 +10,6 @@ type InputPropsType = {
 
 export function Input(props: InputPropsType) {
 
-	const onChangeInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
-		props.setTitle(event.currentTarget.value);
-	};
-
 	const onKeyDownEventHandler = (event: KeyboardEvent<HTMLInputElement>) => {
 		props.setError();
 		event.key === "Enter" && props.addTask();
@@ -22,7 +18,6 @@ export function Input(props: InputPropsType) {
 	return <input 
 	className={props.error ? "error" : ""} 
 	value={props.title} 
-	onChange={onChangeInputHandler} 
 	onKeyDown={onKeyDownEventHandler} 
 	/>;
 };
