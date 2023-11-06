@@ -47,8 +47,6 @@ export function Todolist(props: PropsType) {
 		setTitle("");
 	};
 
-	// const addTaskEnter = (event: KeyboardEvent<HTMLInputElement>) => event.key === "Enter" && addTask();
-
 	const buttons = ["All", "Active", "Completed"];
 
 	const filterTasksButtons = () => buttons.map((el: string) => <Button classNameStatus={el === props.filter ? "active-filter" : ""} name={el} callBack={() => props.filterTasks(el)} />);
