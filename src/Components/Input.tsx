@@ -12,7 +12,7 @@ export function Input(props: InputPropsType) {
 
 	const onChangeEventHandler = (event: ChangeEvent<HTMLInputElement>) => {
 		props.setTitle(event.currentTarget.value);
-	}
+	};
 
 	const onKeyDownEventHandler = (event: KeyboardEvent<HTMLInputElement>) => {
 		props.setError();
