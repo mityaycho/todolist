@@ -4,7 +4,7 @@ type InputPropsType = {
 	title: string;
 	error: string | null | undefined;
 	setError: () => void;
-	setTitle: (title: string) => void;
+	setTitle: (value: string) => void;
 	addTask: () => void;
 };
 
