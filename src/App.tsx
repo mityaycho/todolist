@@ -52,15 +52,15 @@ function App() {
 
 	let tasksForTodoList = tasks;
 
-	const [filter, setFilter] = useState("All");
+	const filterTasks = (id: string, value: string) => {
+		todolists.map(todolist => {
+			todolist.id === id && todolist.filter === "Active" && (tasksForTodoList = tasks.filter(task => !task.isDone));
 
-	todolists.map(todolist => {
-		todolist.filter === "Active" && (tasksForTodoList = tasks.filter(task => !task.isDone));
+			todolist.id === id && todolist.filter === "Completed" && (tasksForTodoList = tasks.filter(task => task.isDone));
+		});
 
-		todolist.filter === "Completed" && (tasksForTodoList = tasks.filter(task => task.isDone));
-	});
-
-	const filterTasks = (id: string, value: string) => setFilter(value);
+		setTodolists([]);
+	};
 
 
 	return (
