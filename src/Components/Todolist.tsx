@@ -16,7 +16,7 @@ export type PropsType = {
 	error: string | null | undefined;
 	setError: () => void;
 	delTasks: (taskId: string) => void;
-	filterTasks: (value: string) => void;
+	filterTasks: (id: string, value: string) => void;
 	addTask: (title: string) => void;
 	changeTaskStatus: (id: string, isDone: boolean) => void;
 };
@@ -56,7 +56,7 @@ export function Todolist(props: PropsType) {
 
 	const buttons = ["All", "Active", "Completed"];
 
-	const filterTasksButtons = () => buttons.map((el: string) => <Button classNameStatus={el === props.filter ? "active-filter" : ""} name={el} callBack={() => props.filterTasks(el)} />);
+	const filterTasksButtons = () => buttons.map((el: string) => <Button classNameStatus={el === props.filter ? "active-filter" : ""} name={el} callBack={() => props.filterTasks(props.id, el)} />);
 
 
 	return (

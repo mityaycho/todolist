@@ -14,13 +14,6 @@ function App() {
 		{ id: v1(), title: "GraphQL", isDone: false }
 	]);
 
-	const [todolists, setTodolists] = useState<Array<TodolistsType>>(
-		[
-			{ id: v1(), title: 'What to learn', filter: 'All' },
-			{ id: v1(), title: 'What to buy', filter: 'All' },
-		]
-	)
-
 	const [error, setError] = useState<string | null | undefined>(null);
 
 	const changeSetError = () => {
@@ -50,15 +43,24 @@ function App() {
 		setTasks([...tasksCopy]);
 	};
 
+	const [todolists, setTodolists] = useState<Array<TodolistsType>>(
+		[
+			{ id: v1(), title: 'What to learn', filter: 'All' },
+			{ id: v1(), title: 'What to buy', filter: 'All' },
+		]
+	);
+
 	let tasksForTodoList = tasks;
 
 	const [filter, setFilter] = useState("All");
 
-	filter === "Active" && (tasksForTodoList = tasks.filter(task => !task.isDone));
+	todolists.map(todolist => {
+		todolist.filter === "Active" && (tasksForTodoList = tasks.filter(task => !task.isDone));
 
-	filter === "Completed" && (tasksForTodoList = tasks.filter(task => task.isDone));
+		todolist.filter === "Completed" && (tasksForTodoList = tasks.filter(task => task.isDone));
+	});
 
-	const filterTasks = (value: string) => setFilter(value);
+	const filterTasks = (id: string, value: string) => setFilter(value);
 
 
 	return (
