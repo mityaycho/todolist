@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { TaskType, Todolist } from './Components/Todolist';
+import { TaskType, Todolist, TodolistsType } from './Components/Todolist';
 import './App.css';
 import { v1 } from 'uuid';
 
 
 function App() {
 
-	const [tasks, setTasks] = useState ([
+	const [tasks, setTasks] = useState([
 		{ id: v1(), title: "HTML&CSS", isDone: true },
 		{ id: v1(), title: "JS", isDone: true },
 		{ id: v1(), title: "ReactJS", isDone: false },
@@ -16,10 +16,10 @@ function App() {
 
 	const [todolists, setTodolists] = useState<Array<TodolistsType>>(
 		[
-				{id: v1(), title: 'What to learn', filter: 'All'},
-				{id: v1(), title: 'What to buy', filter: 'All'},
+			{ id: v1(), title: 'What to learn', filter: 'All' },
+			{ id: v1(), title: 'What to buy', filter: 'All' },
 		]
-)
+	)
 
 	const [error, setError] = useState<string | null | undefined>(null);
 
@@ -34,7 +34,7 @@ function App() {
 	};
 
 	const removeTask = (taskId: string) => {
-		const nextState:Array<TaskType> = [];
+		const nextState: Array<TaskType> = [];
 
 		for (let i = 0; i < tasks.length; i++) {
 			if (tasks[i].id !== taskId) {
@@ -58,22 +58,28 @@ function App() {
 
 	filter === "Completed" && (tasksForTodoList = tasks.filter(task => task.isDone));
 
-	const filterTasks = (value:string) => setFilter(value);
+	const filterTasks = (value: string) => setFilter(value);
 
 
 	return (
 		<div className="App">
-			<Todolist 
-			title="What to learn" 
-			filter={filter} 
-			error={error} 
-			setError={changeSetError} 
-			tasks={tasksForTodoList} 
-			delTasks={removeTask} 
-			filterTasks={filterTasks} 
-			addTask={addTask} 
-			changeTaskStatus={changeTaskStatus}
-			/>
+			{
+				todolists.map(todolist =>
+					<Todolist
+						key={todolist.id}
+						id={todolist.id}
+						title={todolist.title}
+						filter={todolist.filter}
+						error={error}
+						setError={changeSetError}
+						tasks={tasksForTodoList}
+						delTasks={removeTask}
+						filterTasks={filterTasks}
+						addTask={addTask}
+						changeTaskStatus={changeTaskStatus}
+					/>
+				)}
+
 		</div>
 	);
 };

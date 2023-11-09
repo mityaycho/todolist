@@ -9,6 +9,7 @@ export type TaskType = {
 };
 
 export type PropsType = {
+	id: string;
 	title: string;
 	tasks: Array<TaskType>;
 	filter: string;
@@ -18,6 +19,12 @@ export type PropsType = {
 	filterTasks: (value: string) => void;
 	addTask: (title: string) => void;
 	changeTaskStatus: (id: string, isDone: boolean) => void;
+};
+
+export type TodolistsType = {
+	id: string;
+	title: string;
+	filter: string;
 };
 
 export function Todolist(props: PropsType) {
