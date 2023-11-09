@@ -14,6 +14,13 @@ function App() {
 		{ id: v1(), title: "GraphQL", isDone: false }
 	]);
 
+	const [todolists, setTodolists] = useState<Array<TodolistsType>>(
+		[
+				{id: v1(), title: 'What to learn', filter: 'All'},
+				{id: v1(), title: 'What to buy', filter: 'All'},
+		]
+)
+
 	const [error, setError] = useState<string | null | undefined>(null);
 
 	const changeSetError = () => {
