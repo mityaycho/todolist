@@ -65,12 +65,13 @@ function App() {
 		setTasks([...tasksCopy]);
 	};
 
-	const [todolists, setTodolists] = useState<Array<TodolistsType>>(
-		[
-			{ id: v1(), title: 'What to learn', filter: 'All' },
-			{ id: v1(), title: 'What to buy', filter: 'All' },
-		]
-	);
+	// const [todolists, setTodolists] = useState<Array<TodolistsType>>(
+		
+	// 	[
+	// 		{ id: v1(), title: 'What to learn', filter: 'All' },
+	// 		{ id: v1(), title: 'What to buy', filter: 'All' },
+	// 	]
+	// );
 
 
 	const changeFilter = (id: string, value: string) => {
