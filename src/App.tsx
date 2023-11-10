@@ -53,13 +53,21 @@ function App() {
 	let tasksForTodoList = tasks;
 
 	const filterTasks = (id: string, value: string) => {
-		todolists.map(todolist => {
-			todolist.id === id && todolist.filter === "Active" && (tasksForTodoList = tasks.filter(task => !task.isDone));
+		const filterTodolists = todolists;
+		filterTodolists.map(tdl => {
 
-			todolist.id === id && todolist.filter === "Completed" && (tasksForTodoList = tasks.filter(task => task.isDone));
+			if (tdl.id === id && value === "Active") {
+				tdl.filter = value;
+				tasksForTodoList.filter(t => !t.isDone);
+			} else if (tdl.id === id && value === "Completed") {
+				tdl.filter = value;
+				tasksForTodoList.filter(t => t.isDone);
+			} else if (tdl.id === id && value === "All") {
+				tdl.filter = value;
+			}
 		});
-
-		setTodolists([]);
+		
+		setTodolists([...filterTodolists]);
 	};
 
 
