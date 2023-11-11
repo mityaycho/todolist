@@ -52,7 +52,7 @@ function App() {
 		let todolistTasks = tasks[todolistId];
 
 		tasks[todolistId] = todolistTasks.filter(task => task.id !== taskId);
-		setTasks[...{tasks};]
+		setTasks({...tasks});
 	};
 
 	const changeTaskStatus = (id: string, isDone: boolean) => {
