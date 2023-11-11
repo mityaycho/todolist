@@ -89,14 +89,15 @@ function App() {
 		<div className="App">
 			{
 				todolists.map(todolist => {
-					let tasksForTodoList = tasks;
+					let allTodolistTasks = tasks[todolist.id];
+					let tasksForTodoList = allTodolistTasks;
 
 					if (todolist.filter === "Active") {
-						tasksForTodoList = tasks.filter(t => !t.isDone);
+						tasksForTodoList = allTodolistTasks.filter(t => !t.isDone);
 					};
 
 					if (todolist.filter === "Completed") {
-						tasksForTodoList = tasks.filter(t => t.isDone);
+						tasksForTodoList = allTodolistTasks.filter(t => t.isDone);
 					};
 					return <Todolist
 						key={todolist.id}
@@ -106,7 +107,7 @@ function App() {
 						error={error}
 						setError={changeSetError}
 						tasks={tasksForTodoList}
-						delTasks={removeTask}
+						removeTask={removeTask}
 						filterTasks={changeFilter}
 						addTask={addTask}
 						changeTaskStatus={changeTaskStatus}

@@ -15,10 +15,10 @@ export type PropsType = {
 	filter: string;
 	error: string | null | undefined;
 	setError: () => void;
-	delTasks: (taskId: string) => void;
+	removeTask: (taskId: string, todolistId: string) => void;
 	filterTasks: (id: string, value: string) => void;
-	addTask: (title: string) => void;
-	changeTaskStatus: (id: string, isDone: boolean) => void;
+	addTask: (title: string, todolistId: string) => void;
+	changeTaskStatus: (id: string, isDone: boolean, todolistId: string) => void;
 };
 
 export type TodolistsType = {
@@ -43,13 +43,13 @@ export function Todolist(props: PropsType) {
 	};
 
 	const onChangeHandler = (id: string, event: ChangeEvent<HTMLInputElement>) => {
-		props.changeTaskStatus(id, event.currentTarget.checked);
+		props.changeTaskStatus(id, event.currentTarget.checked, props.id);
 	};
 
-	const inputs = props.tasks.map((el) => <li key={el.id} className={el.isDone ? "is-done" : ""}><input type="checkbox" checked={el.isDone} onChange={(e) => onChangeHandler(el.id, e)}/> <span>{el.title}</span><Button classNameStatus="" name="x" callBack={() => props.delTasks(el.id)}/></li>);
+	const inputs = props.tasks.map((el) => <li key={el.id} className={el.isDone ? "is-done" : ""}><input type="checkbox" checked={el.isDone} onChange={(e) => onChangeHandler(el.id, e)}/> <span>{el.title}</span><Button classNameStatus="" name="x" callBack={() => props.removeTask(el.id, props.id)}/></li>);
 
 	const addTask = () => {
-		props.addTask(title);
+		props.addTask(title, props.id);
 		addMessage(title);
 		setTitle("");
 	};
