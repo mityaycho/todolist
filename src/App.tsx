@@ -46,24 +46,28 @@ function App() {
 		const task = { id: v1(), title: title.trim(), isDone: false };
 		const todolistTasks = tasks[todolistId];
 		tasks[todolistId] = [task, ...todolistTasks];
-		title.trim() !== "" ? setTasks({...tasks}) : setError("Title is required");
+		title.trim() !== "" ? setTasks({ ...tasks }) : setError("Title is required");
 	};
 
 	const removeTask = (taskId: string, todolistId: string) => {
 		let todolistTasks = tasks[todolistId];
 
 		tasks[todolistId] = todolistTasks.filter(task => task.id !== taskId);
-		setTasks({...tasks});
+		setTasks({ ...tasks });
 	};
 
-	const changeTaskStatus = (id: string, isDone: boolean) => {
-		const tasksCopy = tasks;
-		tasksCopy.map(el => el.id === id && (el.isDone = isDone));
-		setTasks([...tasksCopy]);
+	const changeTaskStatus = (id: string, isDone: boolean, todolistId: string) => {
+		let todolistTasks = tasks[todolistId];
+		const task = todolistTasks.find(task => task.id === id);
+
+		if (task) {
+			task.isDone = isDone;
+			setTasks({...tasks});
+		}
 	};
 
 	// const [todolists, setTodolists] = useState<Array<TodolistsType>>(
-		
+
 	// 	[
 	// 		{ id: v1(), title: 'What to learn', filter: 'All' },
 	// 		{ id: v1(), title: 'What to buy', filter: 'All' },
