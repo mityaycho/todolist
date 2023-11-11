@@ -42,10 +42,11 @@ function App() {
 		setError(null);
 	};
 
-	function addTask(title: string) {
+	function addTask(title: string, todolistId: string) {
 		const task = { id: v1(), title: title.trim(), isDone: false };
-		const newTasks = [task, ...tasks];
-		title.trim() !== "" ? setTasks(newTasks) : setError("Title is required");
+		const todolistTasks = tasks[todolistId];
+		tasks[todolistId] = [task, ...todolistTasks];
+		title.trim() !== "" ? setTasks({...tasks}) : setError("Title is required");
 	};
 
 	const removeTask = (taskId: string, todolistId: string) => {
