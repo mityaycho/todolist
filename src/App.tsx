@@ -48,15 +48,11 @@ function App() {
 		title.trim() !== "" ? setTasks(newTasks) : setError("Title is required");
 	};
 
-	const removeTask = (taskId: string) => {
-		const nextState: Array<TaskType> = [];
+	const removeTask = (taskId: string, todolistId: string) => {
+		let todolistTasks = tasks[todolistId];
 
-		for (let i = 0; i < tasks.length; i++) {
-			if (tasks[i].id !== taskId) {
-				nextState.push(tasks[i]);
-			};
-			setTasks(nextState);
-		};
+		tasks[todolistId] = todolistTasks.filter(task => task.id !== taskId);
+		setTasks[...{tasks};]
 	};
 
 	const changeTaskStatus = (id: string, isDone: boolean) => {
