@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
 
@@ -15,6 +15,7 @@ export type PropsType = {
 	filter: string;
 	error: string | null | undefined;
 	setError: () => void;
+	removeTodoList: (id: string) => void;
 	removeTask: (taskId: string, todolistId: string) => void;
 	filterTasks: (id: string, value: string) => void;
 	addTask: (title: string, todolistId: string) => void;
@@ -54,10 +55,6 @@ export function Todolist(props: PropsType) {
 		setTitle("");
 	};
 
-	const removeTodoList = (e: MouseEvent<HTMLButtonElement>) => {
-		
-	};
-
 	const buttons = ["All", "Active", "Completed"];
 
 	const filterTasksButtons = () => buttons.map((el: string) => <Button classNameStatus={el === props.filter ? "active-filter" : ""} name={el} callBack={() => props.filterTasks(props.id, el)} />);
@@ -67,7 +64,7 @@ export function Todolist(props: PropsType) {
 		<div>
 			<h3>
 				{props.title}
-				<button onClick={(e) => removeTodoList(e)}>X</button>
+				<Button classNameStatus="" name="X" callBack={() => props.removeTodoList(props.id)} />
 			</h3>
 			<div>
 				<Input
