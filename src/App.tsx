@@ -49,6 +49,7 @@ function App() {
 	function addTask(title: string, todolistId: string) {
 		const task = { id: v1(), title: title.trim(), isDone: false };
 		const todolistTasks = tasks[todolistId];
+		
 		tasks[todolistId] = [task, ...todolistTasks];
 		title.trim() !== "" ? setTasks({ ...tasks }) : setError("Title is required");
 	};
