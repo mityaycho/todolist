@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
 
@@ -54,8 +54,8 @@ export function Todolist(props: PropsType) {
 		setTitle("");
 	};
 
-	const removeTodoList = () => {
-
+	const removeTodoList = (e: MouseEvent<HTMLButtonElement>) => {
+		
 	};
 
 	const buttons = ["All", "Active", "Completed"];
@@ -67,7 +67,7 @@ export function Todolist(props: PropsType) {
 		<div>
 			<h3>
 				{props.title}
-				<Button classNameStatus="" name="X" callBack={removeTodoList} />
+				<button onClick={(e) => removeTodoList(e)}>X</button>
 			</h3>
 			<div>
 				<Input
