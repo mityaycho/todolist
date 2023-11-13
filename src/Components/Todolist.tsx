@@ -30,15 +30,15 @@ export type TodolistsType = {
 export function Todolist(props: PropsType) {
 
 	let [message, setMessage] = useState([
-		{message: "message1"},
-		{message: "message2"},
-		{message: "message3"}
+		{ message: "message1" },
+		{ message: "message2" },
+		{ message: "message3" }
 	]);
 
 	let [title, setTitle] = useState('');
 
 	const addMessage = (title: string) => {
-		let newMessage = {message: title};
+		let newMessage = { message: title };
 		setMessage([newMessage, ...message]);
 	};
 
@@ -46,12 +46,16 @@ export function Todolist(props: PropsType) {
 		props.changeTaskStatus(id, event.currentTarget.checked, props.id);
 	};
 
-	const inputs = props.tasks.map((el) => <li key={el.id} className={el.isDone ? "is-done" : ""}><input type="checkbox" checked={el.isDone} onChange={(e) => onChangeHandler(el.id, e)}/> <span>{el.title}</span><Button classNameStatus="" name="x" callBack={() => props.removeTask(el.id, props.id)}/></li>);
+	const inputs = props.tasks.map((el) => <li key={el.id} className={el.isDone ? "is-done" : ""}><input type="checkbox" checked={el.isDone} onChange={(e) => onChangeHandler(el.id, e)} /> <span>{el.title}</span><Button classNameStatus="" name="x" callBack={() => props.removeTask(el.id, props.id)} /></li>);
 
 	const addTask = () => {
 		props.addTask(title, props.id);
 		addMessage(title);
 		setTitle("");
+	};
+
+	const removeTodoList = () => {
+
 	};
 
 	const buttons = ["All", "Active", "Completed"];
@@ -61,16 +65,19 @@ export function Todolist(props: PropsType) {
 
 	return (
 		<div>
-			<h3>{props.title}</h3>
+			<h3>
+				{props.title}
+				<Button classNameStatus="" name="X" callBack={removeTodoList} />
+			</h3>
 			<div>
-				<Input 
-				setTitle={setTitle} 
-				title={title} 
-				addTask={addTask} 
-				error={props.error} 
-				setError={props.setError} 
+				<Input
+					setTitle={setTitle}
+					title={title}
+					addTask={addTask}
+					error={props.error}
+					setError={props.setError}
 				/>
-				<Button classNameStatus="" name = {"+"} callBack={addTask}/>
+				<Button classNameStatus="" name={"+"} callBack={addTask} />
 				{props.error && <div className="error-message">{props.error}</div>}
 				{message.map((el, i) => <div key={i}>{el.message}</div>)}
 			</div>
