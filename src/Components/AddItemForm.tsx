@@ -1,5 +1,4 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
-import { Input } from "./Input";
 
 type AddItemFormType = {
 	addItem: (title: string) => void;

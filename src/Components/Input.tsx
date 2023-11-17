@@ -2,7 +2,7 @@ import { ChangeEvent, KeyboardEvent } from "react";
 
 type InputPropsType = {
 	title: string;
-	error: string | null | undefined;
+	error: string | null;
 	setError: () => void;
 	setTitle: (value: string) => void;
 	addTask: () => void;
@@ -20,7 +20,7 @@ export function Input(props: InputPropsType) {
 	};
 
 	return <input 
-	className={props.error ? "error" : ""} 
+	className={props.error ? "error" : " "} 
 	value={props.title} 
 	onChange={onChangeEventHandler} 
 	onKeyDown={onKeyDownEventHandler} 

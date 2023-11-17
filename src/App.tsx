@@ -41,7 +41,7 @@ function App() {
 	})
 
 
-	const [error, setError] = useState<string | null | undefined>(null);
+	const [error, setError] = useState<string | null>(null);
 
 	const changeSetError = () => {
 		setError(null);
