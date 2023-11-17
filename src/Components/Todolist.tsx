@@ -13,7 +13,7 @@ export type PropsType = {
 	title: string;
 	tasks: Array<TaskType>;
 	filter: string;
-	error: string | null | undefined;
+	error: string | null;
 	setError: () => void;
 	removeTodoList: (id: string) => void;
 	removeTask: (taskId: string, todolistId: string) => void;
