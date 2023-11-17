@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
+import AddItemForm from "./AddItemForm";
 
 export type TaskType = {
 	id: string;
@@ -55,6 +56,10 @@ export function Todolist(props: PropsType) {
 		setTitle("");
 	};
 
+	const addTdl = (title: string) => {
+		props.addTask(title, props.id);
+	}
+
 	const buttons = ["All", "Active", "Completed"];
 
 	const filterTasksButtons = () => buttons.map((el: string) => <Button classNameStatus={el === props.filter ? "active-filter" : ""} name={el} callBack={() => props.filterTasks(props.id, el)} />);
@@ -66,6 +71,7 @@ export function Todolist(props: PropsType) {
 				{props.title}
 				<Button classNameStatus="" name="X" callBack={() => props.removeTodoList(props.id)} />
 			</h3>
+			<AddItemForm addItem={addTdl} />
 			<div>
 				<Input
 					setTitle={setTitle}
