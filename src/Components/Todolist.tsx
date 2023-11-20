@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
+import AddItemForm from "./AddItemForm";
 
 export type TaskType = {
 	id: string;
@@ -49,7 +50,7 @@ export function Todolist(props: PropsType) {
 
 	const inputs = props.tasks.map((el) => <li key={el.id} className={el.isDone ? "is-done" : ""}><input type="checkbox" checked={el.isDone} onChange={(e) => onChangeHandler(el.id, e)} /> <span>{el.title}</span><Button classNameStatus="" name="x" callBack={() => props.removeTask(el.id, props.id)} /></li>);
 
-	const addTask = () => {
+	const addTask = (title: string) => {
 		props.addTask(title, props.id);
 		addMessage(title);
 		setTitle("");
@@ -66,7 +67,8 @@ export function Todolist(props: PropsType) {
 				{props.title}
 				<Button classNameStatus="" name="X" callBack={() => props.removeTodoList(props.id)} />
 			</h3>
-			<div>
+			<AddItemForm addItem={addTask} />
+			{/* <div>
 				<Input
 					setTitle={setTitle}
 					title={title}
@@ -77,7 +79,7 @@ export function Todolist(props: PropsType) {
 				<Button classNameStatus="" name={"+"} callBack={addTask} />
 				{props.error && <div className="error-message">{props.error}</div>}
 				{message.map((el, i) => <div key={i}>{el.message}</div>)}
-			</div>
+			</div> */}
 			<ul>
 				{inputs}
 			</ul>
