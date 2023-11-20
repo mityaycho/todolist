@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 
 type EditableSpanPropsType = {
@@ -5,9 +6,16 @@ type EditableSpanPropsType = {
 };
 
 const EditableSpan = (props: EditableSpanPropsType) => {
+	const [editMod, setEditMode] = useState(false);
+
+	const activateEditMode = () => setEditMode(true);
+	const activateViewMode = () => setEditMode(false);
 
 	return (
-		<span>{props.title}</span>
+		editMod ?
+		<input value={props.title} onBlur={activateViewMode} autoFocus /> :
+		<span onDoubleClick={activateEditMode}>{props.title}</span>
+
 	);
 };
 
