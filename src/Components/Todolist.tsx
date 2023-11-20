@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
 import AddItemForm from "./AddItemForm";
+import EditableSpan from "./EditableSpan";
 
 export type TaskType = {
 	id: string;
@@ -48,7 +49,15 @@ export function Todolist(props: PropsType) {
 		props.changeTaskStatus(id, event.currentTarget.checked, props.id);
 	};
 
-	const inputs = props.tasks.map((el) => <li key={el.id} className={el.isDone ? "is-done" : ""}><input type="checkbox" checked={el.isDone} onChange={(e) => onChangeHandler(el.id, e)} /> <span>{el.title}</span><Button classNameStatus="" name="x" callBack={() => props.removeTask(el.id, props.id)} /></li>);
+	const inputs = props.tasks.map((el) => {
+		return (
+			<li key={el.id} className={el.isDone ? "is-done" : ""}>
+				<input type="checkbox" checked={el.isDone} onChange={(e) => onChangeHandler(el.id, e)} />
+				<EditableSpan title={el.title} />
+				<Button classNameStatus="" name="x" callBack={() => props.removeTask(el.id, props.id)} />
+			</li>
+		)
+	});
 
 	const addTask = (title: string) => {
 		props.addTask(title, props.id);

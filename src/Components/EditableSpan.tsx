@@ -1,10 +1,14 @@
 
 
-const EditableSpan = () => {
+type EditableSpanPropsType = {
+	title: string;
+};
+
+const EditableSpan = (props: EditableSpanPropsType) => {
 
 	return (
-		<li>
-			
-		</li>
-	)
-}
+		<span>{props.title}</span>
+	);
+};
+
+export default EditableSpan;
