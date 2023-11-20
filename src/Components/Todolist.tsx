@@ -37,7 +37,7 @@ export function Todolist(props: PropsType) {
 		{ message: "message3" }
 	]);
 
-	let [title, setTitle] = useState('');
+	// let [title, setTitle] = useState('');
 
 	const addMessage = (title: string) => {
 		let newMessage = { message: title };
@@ -53,7 +53,7 @@ export function Todolist(props: PropsType) {
 	const addTask = (title: string) => {
 		props.addTask(title, props.id);
 		addMessage(title);
-		setTitle("");
+		// setTitle("");
 	};
 
 	const buttons = ["All", "Active", "Completed"];
