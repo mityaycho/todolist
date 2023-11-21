@@ -72,6 +72,16 @@ function App() {
 		};
 	};
 
+	const changeTaskTitle = (id: string, newTitle: string, todolistId: string) => {
+		let todolistTasks = tasks[todolistId];
+		const task = todolistTasks.find(task => task.id === id);
+
+		if (task) {
+			task.title = newTitle;
+			setTasks({...tasks});
+		};
+	};
+
 	// const [todolists, setTodolists] = useState<Array<TodolistsType>>(
 
 	// 	[
@@ -132,6 +142,7 @@ function App() {
 						filterTasks={changeFilter}
 						addTask={addTask}
 						changeTaskStatus={changeTaskStatus}
+						changeTaskTitle={changeTaskTitle}
 						removeTodoList={removeTodoList}
 					/>
 				})}
