@@ -23,6 +23,7 @@ export type PropsType = {
 	addTask: (title: string, todolistId: string) => void;
 	changeTaskStatus: (id: string, isDone: boolean, todolistId: string) => void;
 	changeTaskTitle: (id: string, newTitle: string, todolistId: string) => void;
+	changeTodolistTitle: (todolistId: string, newTitle: string) => void;
 };
 
 export type TodolistsType = {
@@ -54,6 +55,10 @@ export function Todolist(props: PropsType) {
 		props.changeTaskTitle(id, newTitle, props.id);
 	};
 
+	const changeTodolistTitle = (newTitle: string) => {
+		props.changeTodolistTitle(props.id, newTitle);
+	}
+
 	const inputs = props.tasks.map((el) => {
 		return (
 			<li key={el.id} className={el.isDone ? "is-done" : ""}>
@@ -78,7 +83,7 @@ export function Todolist(props: PropsType) {
 	return (
 		<div>
 			<h3>
-				{props.title}
+			<EditableSpan title={props.title} onChange={changeTodolistTitle} />
 				<Button classNameStatus="" name="X" callBack={() => props.removeTodoList(props.id)} />
 			</h3>
 			<AddItemForm addItem={addTask} />
