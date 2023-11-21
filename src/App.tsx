@@ -11,14 +11,6 @@ type TasksStateType = {
 
 function App() {
 
-	// const [tasks, setTasks] = useState([
-	// 	{ id: v1(), title: "HTML&CSS", isDone: true },
-	// 	{ id: v1(), title: "JS", isDone: true },
-	// 	{ id: v1(), title: "ReactJS", isDone: false },
-	// 	{ id: v1(), title: "Rest API", isDone: false },
-	// 	{ id: v1(), title: "GraphQL", isDone: false }
-	// ]);
-
 	let todolistID1 = v1()
 	let todolistID2 = v1()
 
@@ -89,14 +81,6 @@ function App() {
 			setTodolists([...todolists]);
 		}
 	}
-
-	// const [todolists, setTodolists] = useState<Array<TodolistsType>>(
-
-	// 	[
-	// 		{ id: v1(), title: 'What to learn', filter: 'All' },
-	// 		{ id: v1(), title: 'What to buy', filter: 'All' },
-	// 	]
-	// );
 
 
 	const changeFilter = (id: string, value: string) => {
