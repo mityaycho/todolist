@@ -79,8 +79,8 @@ function App() {
 		if (todolist) {
 			todolist.title = newTitle;
 			setTodolists([...todolists]);
-		}
-	}
+		};
+	};
 
 
 	const changeFilter = (id: string, value: string) => {
