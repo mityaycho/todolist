@@ -30,7 +30,7 @@ function App() {
 			{ id: v1(), title: 'Rest API', isDone: true },
 			{ id: v1(), title: 'GraphQL', isDone: false },
 		]
-	})
+	});
 
 
 	const [error, setError] = useState<string | null>(null);
