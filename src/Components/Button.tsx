@@ -1,6 +1,10 @@
+​import { Delete } from '@mui/icons-material'
+import { IconButton } from '@mui/material'
+
+
 
 type ButtonType = {
-	name: string;
+	name: any;
 	classNameStatus: string;
 	callBack: () => void;
 };
@@ -9,11 +13,10 @@ export function Button(props: ButtonType) {
 	const onClickHandler = () => props.callBack();
 
 	return (
-		<button
-			style={{ maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px' }}
+		<IconButton
 			className={props.classNameStatus}
 			onClick={onClickHandler}>
 			{props.name}
-		</button>
+		</IconButton>
 	);
 };
