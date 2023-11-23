@@ -8,5 +8,12 @@ type ButtonType = {
 export function Button(props: ButtonType) {
 	const onClickHandler = () => props.callBack();
 
-	return <button className={props.classNameStatus} onClick={onClickHandler}>{props.name}</button>;
+	return (
+		<button
+			style={{ maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px' }}
+			className={props.classNameStatus}
+			onClick={onClickHandler}>
+			{props.name}
+		</button>
+	);
 };

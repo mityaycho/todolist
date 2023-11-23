@@ -1,4 +1,5 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
+import { Button } from "./Button";
 
 type AddItemFormPropsType = {
 	addItem: (title: string) => void;
@@ -36,7 +37,7 @@ const AddItemForm = (props: AddItemFormPropsType) => {
 					onKeyDown={onKeyPressHandler}
 					className={error ? "error" : ""}
 				/>
-				<button onClick={addItem}>+</button>
+				<Button classNameStatus="" name="+" callBack={addItem} />
 				{error && <div className="error-message">{error}</div>}
 			</div>
 		);
