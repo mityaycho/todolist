@@ -22,7 +22,7 @@ export function Input(props: InputPropsType) {
 
 	return <TextField
 		variant={'outlined'}
-		className={props.error ? "error" : " "}
+		error={!!props.error}
 		value={props.title}
 		onChange={onChangeEventHandler}
 		onKeyDown={onKeyDownEventHandler}
