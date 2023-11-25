@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import { Input } from "./Input";
 import { Button } from "./Button";
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
