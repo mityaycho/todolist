@@ -1,7 +1,8 @@
-import { TextField } from "@mui/material";
+import { TextField, TextFieldVariants } from "@mui/material";
 import { ChangeEvent, KeyboardEvent } from "react";
 
 type InputPropsType = {
+	variant: TextFieldVariants | undefined
 	title: string;
 	error: string | null;
 	setError: () => void;
@@ -21,6 +22,7 @@ export function Input(props: InputPropsType) {
 	};
 
 	return <TextField
+		variant={'outlined'}
 		className={props.error ? "error" : " "}
 		value={props.title}
 		onChange={onChangeEventHandler}
