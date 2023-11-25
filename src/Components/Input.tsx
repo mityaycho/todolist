@@ -1,8 +1,7 @@
-import { TextField, TextFieldVariants } from "@mui/material";
+import { TextField } from "@mui/material";
 import { ChangeEvent, KeyboardEvent } from "react";
 
 type InputPropsType = {
-	variant: TextFieldVariants | undefined
 	title: string;
 	error: string | null;
 	setError: () => void;
