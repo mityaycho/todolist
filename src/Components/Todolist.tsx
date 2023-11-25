@@ -3,6 +3,7 @@ import { Input } from "./Input";
 import { Button } from "./Button";
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
+import { Delete } from "@mui/icons-material";
 
 export type TaskType = {
 	id: string;
@@ -34,7 +35,9 @@ export type TodolistsType = {
 
 export function Todolist(props: PropsType) {
 
-	let [message, setMessage] = useState([
+	const deleteIcon = <Delete />;
+
+	const [message, setMessage] = useState([
 		{ message: "message1" },
 		{ message: "message2" },
 		{ message: "message3" }
@@ -43,7 +46,7 @@ export function Todolist(props: PropsType) {
 	// let [title, setTitle] = useState('');
 
 	const addMessage = (title: string) => {
-		let newMessage = { message: title };
+		const newMessage = { message: title };
 		setMessage([newMessage, ...message]);
 	};
 
@@ -64,7 +67,7 @@ export function Todolist(props: PropsType) {
 			<li key={el.id} className={el.isDone ? "is-done" : ""}>
 				<input type="checkbox" checked={el.isDone} onChange={(e) => onChangeStatusHandler(el.id, e)} />
 				<EditableSpan title={el.title} onChange={(e) => onChangeTitleHandler(el.id, e)} />
-				<Button classNameStatus="" name="x" callBack={() => props.removeTask(el.id, props.id)} />
+				<Button classNameStatus="" name={deleteIcon} callBack={() => props.removeTask(el.id, props.id)} />
 			</li>
 		)
 	});
@@ -79,12 +82,11 @@ export function Todolist(props: PropsType) {
 
 	const filterTasksButtons = () => buttons.map((el: string) => <Button classNameStatus={el === props.filter ? "active-filter" : ""} name={el} callBack={() => props.filterTasks(props.id, el)} />);
 
-
 	return (
 		<div>
 			<h3>
-			<EditableSpan title={props.title} onChange={changeTodolistTitle} />
-				<Button classNameStatus="" name="X" callBack={() => props.removeTodoList(props.id)} />
+				<EditableSpan title={props.title} onChange={changeTodolistTitle} />
+				<Button classNameStatus="" name={deleteIcon} callBack={() => props.removeTodoList(props.id)} />
 			</h3>
 			<AddItemForm addItem={addTask} />
 			{/* <div>
