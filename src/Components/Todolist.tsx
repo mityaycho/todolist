@@ -4,7 +4,7 @@ import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
 import { Delete } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
-import { FilterTasksButtons } from "./FilterButtons";
+import FilterTasksButtons from "./FilterTasksButtons";
 
 export type TaskType = {
 	id: string;
@@ -103,9 +103,7 @@ export function Todolist(props: PropsType) {
 			<ul>
 				{inputs}
 			</ul>
-			<div>
-				<FilterTasksButtons filter={props.filter} id={props.id} filterTasks={props.filterTasks} />
-			</div>
+			<FilterTasksButtons filter={props.filter} id={props.id} filterTasks={props.filterTasks} />
 		</div>
 	);
 };
