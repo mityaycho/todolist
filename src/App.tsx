@@ -3,6 +3,7 @@ import { TaskType, Todolist, TodolistsType } from './Components/Todolist';
 import './App.css';
 import { v1 } from 'uuid';
 import AddItemForm from './Components/AddItemForm';
+import { AppBar, Button, IconButton, Menu, Toolbar, Typography } from '@mui/material';
 
 type TasksStateType = {
 	[key: string]: Array<TaskType>;
@@ -108,6 +109,17 @@ function App() {
 
 	return (
 		<div className="App">
+			<AppBar position="static">
+				<Toolbar>
+					<IconButton edge="start" color="inherit" aria-label="menu">
+						<Menu open={false} />
+					</IconButton>
+					<Typography variant="h6">
+						Todolist
+					</Typography>
+					<Button color="inherit">Login</Button>
+				</Toolbar>
+			</AppBar>
 			<AddItemForm addItem={addTodolist} />
 
 			{
