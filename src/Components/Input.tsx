@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import { ChangeEvent, KeyboardEvent } from "react";
 
 type InputPropsType = {
@@ -19,10 +20,10 @@ export function Input(props: InputPropsType) {
 		event.key === "Enter" && props.addTask();
 	};
 
-	return <input 
-	className={props.error ? "error" : " "} 
-	value={props.title} 
-	onChange={onChangeEventHandler} 
-	onKeyDown={onKeyDownEventHandler} 
+	return <TextField
+		className={props.error ? "error" : " "}
+		value={props.title}
+		onChange={onChangeEventHandler}
+		onKeyDown={onKeyDownEventHandler}
 	/>;
 };
