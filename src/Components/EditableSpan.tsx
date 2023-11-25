@@ -25,7 +25,6 @@ const EditableSpan = (props: EditableSpanPropsType) => {
 		editMod ?
 		<TextField value={title} onChange={onChangeTitleHandler} onBlur={activateViewMode} autoFocus /> :
 		<span onDoubleClick={activateEditMode}>{props.title}</span>
-
 	);
 };
 
