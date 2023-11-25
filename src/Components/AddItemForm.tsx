@@ -1,5 +1,6 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 import { Button } from "./Button";
+import { TextField } from "@mui/material";
 
 type AddItemFormPropsType = {
 	addItem: (title: string) => void;
@@ -32,14 +33,15 @@ const AddItemForm = (props: AddItemFormPropsType) => {
 
 	return (
 			<div>
-				<input
+				<TextField
+					label="Title"
+					helperText={error}
+					error={!!error}
 					value={title}
 					onChange={onChangeHandler}
 					onKeyDown={onKeyPressHandler}
-					className={error ? "error" : ""}
 				/>
 				<Button classNameStatus="" name="+" callBack={addItem} />
-				{error && <div className="error-message">{error}</div>}
 			</div>
 		);
 };

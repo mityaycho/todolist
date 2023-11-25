@@ -21,7 +21,8 @@ export function Input(props: InputPropsType) {
 	};
 
 	return <TextField
-		variant={'outlined'}
+		label="Title"
+		helperText={props.error}
 		error={!!props.error}
 		value={props.title}
 		onChange={onChangeEventHandler}
