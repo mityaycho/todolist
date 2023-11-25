@@ -3,7 +3,7 @@ import { TaskType, Todolist, TodolistsType } from './Components/Todolist';
 import './App.css';
 import { v1 } from 'uuid';
 import AddItemForm from './Components/AddItemForm';
-import { AppBar, Button, Container, IconButton, Menu, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Container, Grid, IconButton, Menu, Paper, Toolbar, Typography } from '@mui/material';
 
 type TasksStateType = {
 	[key: string]: Array<TaskType>;
@@ -122,36 +122,44 @@ function App() {
 			</AppBar>
 
 			<Container fixed>
-				<AddItemForm addItem={addTodolist} />
-				{
-					todolists.map(todolist => {
-						let allTodolistTasks = tasks[todolist.id];
-						let tasksForTodoList = allTodolistTasks;
+				<Grid container>
+					<AddItemForm addItem={addTodolist} />
+				</Grid>
+				<Grid container spacing={3}>
+					{
+						todolists.map(todolist => {
+							let allTodolistTasks = tasks[todolist.id];
+							let tasksForTodoList = allTodolistTasks;
 
-						if (todolist.filter === "Active") {
-							tasksForTodoList = allTodolistTasks.filter(t => !t.isDone);
-						};
+							if (todolist.filter === "Active") {
+								tasksForTodoList = allTodolistTasks.filter(t => !t.isDone);
+							};
 
-						if (todolist.filter === "Completed") {
-							tasksForTodoList = allTodolistTasks.filter(t => t.isDone);
-						};
-						return <Todolist
-							key={todolist.id}
-							id={todolist.id}
-							title={todolist.title}
-							filter={todolist.filter}
-							error={error}
-							setError={changeSetError}
-							tasks={tasksForTodoList}
-							removeTask={removeTask}
-							filterTasks={changeFilter}
-							addTask={addTask}
-							changeTaskStatus={changeTaskStatus}
-							changeTaskTitle={changeTaskTitle}
-							changeTodolistTitle={changeTodolistTitle}
-							removeTodoList={removeTodoList}
-						/>
-					})}
+							if (todolist.filter === "Completed") {
+								tasksForTodoList = allTodolistTasks.filter(t => t.isDone);
+							};
+							return <Grid item>
+								<Paper style={{ padding: "10px" }}>
+									<Todolist
+										key={todolist.id}
+										id={todolist.id}
+										title={todolist.title}
+										filter={todolist.filter}
+										error={error}
+										setError={changeSetError}
+										tasks={tasksForTodoList}
+										removeTask={removeTask}
+										filterTasks={changeFilter}
+										addTask={addTask}
+										changeTaskStatus={changeTaskStatus}
+										changeTaskTitle={changeTaskTitle}
+										changeTodolistTitle={changeTodolistTitle}
+										removeTodoList={removeTodoList}
+									/>
+								</Paper>
+							</Grid>
+						})}
+				</Grid>
 			</Container>
 
 		</div>
