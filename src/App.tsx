@@ -83,7 +83,6 @@ function App() {
 		};
 	};
 
-
 	const changeFilter = (id: string, value: string) => {
 		let todolist = todolists.find(tl => tl.id === id);
 
