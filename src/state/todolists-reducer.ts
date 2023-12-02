@@ -1,3 +1,4 @@
+import { v1 } from "uuid";
 import { TodolistType } from "../Components/Todolist";
 
 type ActionType = {
@@ -13,6 +14,9 @@ export const todolistsReducer = (state: Array<TodolistType>, action: ActionType)
 		case 'REMOVE-TODOLIST':
 			const newState = state.filter(todolist => todolist.id !== action.id);
 			return [...newState];
+			case 'ADD-TODOLIST':
+			const todolistId = v1();
+			return [...state, {id: todolistId, title: action.title, filter: "all"}];
 		default:
 			throw new Error('I don\'t understand this type');
 	};
