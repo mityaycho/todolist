@@ -1,15 +1,37 @@
 import { v1 } from "uuid";
 import { TodolistType } from "../Components/Todolist";
 
-type ActionType = {
-	type: string;
-	[key: string]: any;
+export type RemoveTodolistActionType = {
+	type: 'REMOVE-TODOLIST';
+	id: string;
 };
+
+export type AddTodolistActionType = {
+	type: 'ADD-TODOLIST';
+	title: string;
+};
+
+export type ChangeTodolistTitleActionType = {
+	type: 'CHANGE-TODOLIST-TITLE';
+	id: string;
+	title: string;
+};
+
+export type ChangeTodolistFilterActionType = {
+	type: 'CHANGE-TODOLIST-FILTER';
+	id: string;
+	filter: string;
+};
+
+type ActionsType = RemoveTodolistActionType | 
+AddTodolistActionType |
+ChangeTodolistTitleActionType |
+ChangeTodolistFilterActionType;
 
 // меня вызовут и дадут мне стейт (почти всегда объект)
 // и инструкцию (action, тоже объект)
 // согласно прописанному type в этом action (инструкции) я поменяю state
-export const todolistsReducer = (state: Array<TodolistType>, action: ActionType) => {
+export const todolistsReducer = (state: Array<TodolistType>, action: ActionsType) => {
 	switch (action.type) {
 		case 'REMOVE-TODOLIST':
 			const newState = state.filter(todolist => todolist.id !== action.id);
