@@ -28,7 +28,7 @@ export type PropsType = {
 	changeTodolistTitle: (todolistId: string, newTitle: string) => void;
 };
 
-export type TodolistsType = {
+export type TodolistType = {
 	id: string;
 	title: string;
 	filter: string;
