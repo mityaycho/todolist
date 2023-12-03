@@ -15,11 +15,13 @@ const EditableSpan = (props: EditableSpanPropsType) => {
 		setEditMode(true);
 		setTitle(props.title);
 	};
+
 	const activateViewMode = () => setEditMode(false);
+	
 	const onChangeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		setTitle(e.currentTarget.value);
 		props.onChange(title);
-	}
+	};
 
 	return (
 		editMod ?

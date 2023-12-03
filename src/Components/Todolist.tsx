@@ -45,8 +45,6 @@ export function Todolist(props: PropsType) {
 		{ message: "message3" }
 	]);
 
-	// let [title, setTitle] = useState('');
-
 	const addMessage = (title: string) => {
 		const newMessage = { message: title };
 		setMessage([newMessage, ...message]);
@@ -62,7 +60,7 @@ export function Todolist(props: PropsType) {
 
 	const changeTodolistTitle = (newTitle: string) => {
 		props.changeTodolistTitle(props.id, newTitle);
-	}
+	};
 
 	const inputs = props.tasks.map((el) => {
 		return (

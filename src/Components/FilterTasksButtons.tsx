@@ -5,11 +5,12 @@ export type propType = {
 	filter: string;
 	id: string;
 	filterTasks: (id: string, value: string) => void;
-}
+};
 
 
 const FilterTasksButtons = (props: propType) => {
 	const buttons = ["All", "Active", "Completed"];
+
 	return (
 		<div>
 			{
@@ -21,7 +22,7 @@ const FilterTasksButtons = (props: propType) => {
 				</Button>)
 				}
 		</div>
-	)
+	);
 };
 
 export default FilterTasksButtons;
