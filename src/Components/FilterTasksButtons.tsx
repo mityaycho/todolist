@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { v1 } from "uuid";
 
 export type propType = {
 	filter: string;
@@ -13,6 +14,7 @@ const FilterTasksButtons = (props: propType) => {
 		<div>
 			{
 				buttons.map((el: string) => <Button
+					key={v1()}
 					variant={el === props.filter ? "outlined" : "text"}
 					onClick={() => props.filterTasks(props.id, el)}>
 					{el}
