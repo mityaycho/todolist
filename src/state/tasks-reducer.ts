@@ -1,9 +1,10 @@
 import { v1 } from "uuid";
-import { TodolistType } from "../Components/Todolist";
+import { TasksStateType } from "../App";
 
-export type RemoveTodolistActionType = {
-	type: 'REMOVE-TODOLIST';
-	id: string;
+export type RemoveTaskActionType = {
+	type: 'REMOVE-TASK';
+	taskId: string;
+	todolistId: string;
 };
 
 export type AddTodolistActionType = {
@@ -23,7 +24,7 @@ export type ChangeTodolistFilterActionType = {
 	filter: string;
 };
 
-type ActionsType = RemoveTodolistActionType | 
+type ActionsType = RemoveTaskActionType | 
 AddTodolistActionType |
 ChangeTodolistTitleActionType |
 ChangeTodolistFilterActionType;
@@ -31,27 +32,27 @@ ChangeTodolistFilterActionType;
 // меня вызовут и дадут мне стейт (почти всегда объект)
 // и инструкцию (action, тоже объект)
 // согласно прописанному type в этом action (инструкции) я поменяю state
-export const todolistsReducer = (state: Array<TodolistType>, action: ActionsType) => {
+export const tasksReducer = (state: TasksStateType, action: ActionsType) => {
 	switch (action.type) {
-		case 'REMOVE-TODOLIST':
-			const newState = state.filter(todolist => todolist.id !== action.id);
-			return [...newState];
-		case 'ADD-TODOLIST':
-			const todolistId = v1();
-			return [...state, { id: todolistId, title: action.title, filter: "all" }];
-		case 'CHANGE-TODOLIST-TITLE':
-			const newTitle = state.map(el => el.id === action.id ? { ...el, title: action.title } : el);
-			return [...newTitle];
-		case 'CHANGE-TODOLIST-FILTER':
-			const newFilter = state.map(el => el.id === action.id && el.filter !== action.filter ? { ...el, filter: action.filter } : el);
-			return [...newFilter];
+		case 'REMOVE-TASK':
+			const newState = state[action.todolistId].filter(task => task.id !== action.taskId);
+			return {...newState};
+		// case 'ADD-TODOLIST':
+		// 	const todolistId = v1();
+		// 	return [...state, { id: todolistId, title: action.title, filter: "all" }];
+		// case 'CHANGE-TODOLIST-TITLE':
+		// 	const newTitle = state.map(el => el.id === action.id ? { ...el, title: action.title } : el);
+		// 	return [...newTitle];
+		// case 'CHANGE-TODOLIST-FILTER':
+		// 	const newFilter = state.map(el => el.id === action.id && el.filter !== action.filter ? { ...el, filter: action.filter } : el);
+		// 	return [...newFilter];
 		default:
 			throw new Error('I don\'t understand this type');
 	};
 };
 
-​export const RemoveTodolistAC = (todolistId: string): RemoveTodolistActionType => {
-	return { type: 'REMOVE-TODOLIST', id: todolistId };
+​export const RemoveTaskAC = (taskId: string, todolistId: string): RemoveTaskActionType => {
+	return { type: 'REMOVE-TASK', taskId: taskId, todolistId: todolistId };
 };
 
 export const AddTodolistAC = (title: string): AddTodolistActionType => {
