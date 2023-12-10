@@ -5,7 +5,7 @@ import { v1 } from 'uuid';
 import AddItemForm from './Components/AddItemForm';
 import { AppBar, Button, Container, Grid, IconButton, Menu, Paper, Toolbar, Typography } from '@mui/material';
 
-type TasksStateType = {
+export type TasksStateType = {
 	[key: string]: Array<TaskType>;
 };
 
