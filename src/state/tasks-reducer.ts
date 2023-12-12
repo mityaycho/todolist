@@ -20,16 +20,17 @@ export type ChangeTaskStatusActionType = {
 	todolistId: string;
 };
 
-export type ChangeTodolistFilterActionType = {
-	type: 'CHANGE-TODOLIST-FILTER';
+export type ChangeTaskTitleActionType = {
+	type: 'CHANGE-TASK-TITLE';
 	id: string;
-	filter: string;
+	title: string;
+	todolistId: string;
 };
 
 type ActionsType = RemoveTaskActionType | 
 AddTaskActionType |
 ChangeTaskStatusActionType |
-ChangeTodolistFilterActionType;
+ChangeTaskTitleActionType;
 
 // меня вызовут и дадут мне стейт (почти всегда объект)
 // и инструкцию (action, тоже объект)
@@ -45,9 +46,9 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType) => {
 		case 'CHANGE-TASK-STATUS':
 			const changeTask = state[action.todolistId].map(el => el.id === action.id ? { ...el, isDone: action.isDone } : el);
 			return {...state, [action.todolistId]: changeTask};
-		// case 'CHANGE-TODOLIST-FILTER':
-		// 	const newFilter = state.map(el => el.id === action.id && el.filter !== action.filter ? { ...el, filter: action.filter } : el);
-		// 	return [...newFilter];
+		case 'CHANGE-TASK-TITLE':
+			const changeTitle = state[action.todolistId].map(el => el.id === action.id && el.title !== action.title ? { ...el, title: action.title } : el);
+			return {...state, [action.todolistId]: changeTitle};
 		default:
 			throw new Error('I don\'t understand this type');
 	};
@@ -65,6 +66,6 @@ export const changeTaskStatusAC = (id: string, isDone: boolean, todolistId: stri
 	return { type: 'CHANGE-TASK-STATUS', id: id, isDone: isDone, todolistId: todolistId };
 };
 
-export const ChangeTodolistFilterAC = (todolistId: string, filter: string): ChangeTodolistFilterActionType => {
-	return { type: 'CHANGE-TODOLIST-FILTER', id: todolistId, filter: filter };
+export const changeTaskTitleAC = (id: string, title: string, todolistId: string): ChangeTaskTitleActionType => {
+	return { type: 'CHANGE-TASK-TITLE', id: id, todolistId: todolistId, title: title };
 };
