@@ -13,10 +13,11 @@ export type AddTaskActionType = {
 	id: string
 };
 
-export type ChangeTodolistTitleActionType = {
-	type: 'CHANGE-TODOLIST-TITLE';
+export type ChangeTaskStatusActionType = {
+	type: 'CHANGE-TASK-STATUS';
 	id: string;
-	title: string;
+	isDone: boolean;
+	todolistId: string;
 };
 
 export type ChangeTodolistFilterActionType = {
@@ -27,7 +28,7 @@ export type ChangeTodolistFilterActionType = {
 
 type ActionsType = RemoveTaskActionType | 
 AddTaskActionType |
-ChangeTodolistTitleActionType |
+ChangeTaskStatusActionType |
 ChangeTodolistFilterActionType;
 
 // меня вызовут и дадут мне стейт (почти всегда объект)
@@ -41,9 +42,9 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType) => {
 		case 'ADD-TASK':
 		const task = { id: v1(), title: action.title.trim(), isDone: false };
 			return {...state, [action.id]: [task, ...state[action.id]]};
-		// case 'CHANGE-TODOLIST-TITLE':
-		// 	const newTitle = state.map(el => el.id === action.id ? { ...el, title: action.title } : el);
-		// 	return [...newTitle];
+		case 'CHANGE-TASK-STATUS':
+			const changeTask = state[action.todolistId].map(el => el.id === action.id ? { ...el, isDone: action.isDone } : el);
+			return {...state, [action.todolistId]: changeTask};
 		// case 'CHANGE-TODOLIST-FILTER':
 		// 	const newFilter = state.map(el => el.id === action.id && el.filter !== action.filter ? { ...el, filter: action.filter } : el);
 		// 	return [...newFilter];
@@ -60,8 +61,8 @@ export const addTaskAC = (title: string, id: string): AddTaskActionType => {
 	return { type: 'ADD-TASK', title: title, id: id};
 };
 
-export const ChangeTodolistTitleAC = (todolistId: string, title: string): ChangeTodolistTitleActionType => {
-	return { type: 'CHANGE-TODOLIST-TITLE', id: todolistId, title: title };
+export const changeTaskStatusAC = (id: string, isDone: boolean, todolistId: string): ChangeTaskStatusActionType => {
+	return { type: 'CHANGE-TASK-STATUS', id: id, isDone: isDone, todolistId: todolistId };
 };
 
 export const ChangeTodolistFilterAC = (todolistId: string, filter: string): ChangeTodolistFilterActionType => {
