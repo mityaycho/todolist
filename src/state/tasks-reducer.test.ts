@@ -122,7 +122,7 @@ test('title of specified task should be changed', () => {
 
 
 	const keys = Object.keys(endState)
-	const newKey = keys.find(k => k != 'todolistId1' && k != 'todolistId2')
+	const newKey = keys.find(k => k !== 'todolistId1' && k !== 'todolistId2')
 	if (!newKey) {
 			throw Error('new key should be added')
 	}
