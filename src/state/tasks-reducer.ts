@@ -35,7 +35,7 @@ type ActionsType = RemoveTaskActionType |
 // меня вызовут и дадут мне стейт (почти всегда объект)
 // и инструкцию (action, тоже объект)
 // согласно прописанному type в этом action (инструкции) я поменяю state
-export const tasksReducer = (state: TasksStateType, action: ActionsType) => {
+export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksStateType => {
 	switch (action.type) {
 		case 'REMOVE-TASK':
 			const newState = state[action.todolistId].filter(task => task.id !== action.taskId);
