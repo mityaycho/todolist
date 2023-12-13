@@ -1,6 +1,6 @@
 import { v1 } from "uuid";
 import { TasksStateType } from "../App";
-import { AddTodolistActionType } from "./todolists-reducer";
+import { AddTodolistActionType, RemoveTodolistActionType } from "./todolists-reducer";
 
 export type RemoveTaskActionType = {
 	type: 'REMOVE-TASK';
@@ -31,7 +31,7 @@ export type ChangeTaskTitleActionType = {
 type ActionsType = RemoveTaskActionType |
 	AddTaskActionType |
 	ChangeTaskStatusActionType |
-	ChangeTaskTitleActionType | AddTodolistActionType;
+	ChangeTaskTitleActionType | AddTodolistActionType | RemoveTodolistActionType;
 
 // меня вызовут и дадут мне стейт (почти всегда объект)
 // и инструкцию (action, тоже объект)
@@ -51,7 +51,11 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksS
 			const changeTitle = state[action.todolistId].map(el => el.id === action.taskId && el.title !== action.title ? { ...el, title: action.title } : el);
 			return { ...state, [action.todolistId]: changeTitle };
 		case 'ADD-TODOLIST':
-			return { ...state, [action.todolistId]: [] }
+			return { ...state, [action.todolistId]: [] };
+		case 'REMOVE-TODOLIST':
+			const stateCopy = { ...state };
+			delete stateCopy[action.id];
+			return stateCopy;
 		default:
 			throw new Error('I don\'t understand this type');
 	};
