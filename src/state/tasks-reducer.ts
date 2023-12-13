@@ -1,5 +1,6 @@
 import { v1 } from "uuid";
 import { TasksStateType } from "../App";
+import { AddTodolistActionType } from "./todolists-reducer";
 
 export type RemoveTaskActionType = {
 	type: 'REMOVE-TASK';
@@ -30,7 +31,7 @@ export type ChangeTaskTitleActionType = {
 type ActionsType = RemoveTaskActionType |
 	AddTaskActionType |
 	ChangeTaskStatusActionType |
-	ChangeTaskTitleActionType;
+	ChangeTaskTitleActionType | AddTodolistActionType;
 
 // меня вызовут и дадут мне стейт (почти всегда объект)
 // и инструкцию (action, тоже объект)
