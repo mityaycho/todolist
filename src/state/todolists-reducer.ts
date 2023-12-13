@@ -9,6 +9,7 @@ export type RemoveTodolistActionType = {
 export type AddTodolistActionType = {
 	type: 'ADD-TODOLIST';
 	title: string;
+	todolistId: string;
 };
 
 export type ChangeTodolistTitleActionType = {
@@ -31,7 +32,7 @@ ChangeTodolistFilterActionType;
 // меня вызовут и дадут мне стейт (почти всегда объект)
 // и инструкцию (action, тоже объект)
 // согласно прописанному type в этом action (инструкции) я поменяю state
-export const todolistsReducer = (state: Array<TodolistType>, action: ActionsType) => {
+export const todolistsReducer = (state: Array<TodolistType>, action: ActionsType): Array<TodolistType> => {
 	switch (action.type) {
 		case 'REMOVE-TODOLIST':
 			const newState = state.filter(todolist => todolist.id !== action.id);
@@ -54,8 +55,8 @@ export const todolistsReducer = (state: Array<TodolistType>, action: ActionsType
 	return { type: 'REMOVE-TODOLIST', id: todolistId };
 };
 
-export const AddTodolistAC = (title: string): AddTodolistActionType => {
-	return { type: 'ADD-TODOLIST', title: title};
+export const addTodolistAC = (title: string, todolistId: string): AddTodolistActionType => {
+	return { type: 'ADD-TODOLIST', title, todolistId};
 };
 
 export const ChangeTodolistTitleAC = (todolistId: string, title: string): ChangeTodolistTitleActionType => {
