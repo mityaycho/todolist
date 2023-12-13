@@ -27,10 +27,10 @@ export type ChangeTaskTitleActionType = {
 	todolistId: string;
 };
 
-type ActionsType = RemoveTaskActionType | 
-AddTaskActionType |
-ChangeTaskStatusActionType |
-ChangeTaskTitleActionType;
+type ActionsType = RemoveTaskActionType |
+	AddTaskActionType |
+	ChangeTaskStatusActionType |
+	ChangeTaskTitleActionType;
 
 // меня вызовут и дадут мне стейт (почти всегда объект)
 // и инструкцию (action, тоже объект)
@@ -39,33 +39,33 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType) => {
 	switch (action.type) {
 		case 'REMOVE-TASK':
 			const newState = state[action.todolistId].filter(task => task.id !== action.taskId);
-			return {...state, [action.todolistId]: newState};
+			return { ...state, [action.todolistId]: newState };
 		case 'ADD-TASK':
-		const task = { id: v1(), title: action.title.trim(), isDone: false };
-			return {...state, [action.todolistId]: [task, ...state[action.todolistId]]};
+			const task = { id: v1(), title: action.title.trim(), isDone: false };
+			return { ...state, [action.todolistId]: [task, ...state[action.todolistId]] };
 		case 'CHANGE-TASK-STATUS':
 			const changeTask = state[action.todolistId].map(el => el.id === action.id ? { ...el, isDone: action.isDone } : el);
-			return {...state, [action.todolistId]: changeTask};
+			return { ...state, [action.todolistId]: changeTask };
 		case 'CHANGE-TASK-TITLE':
 			const changeTitle = state[action.todolistId].map(el => el.id === action.id && el.title !== action.title ? { ...el, title: action.title } : el);
-			return {...state, [action.todolistId]: changeTitle};
+			return { ...state, [action.todolistId]: changeTitle };
 		default:
 			throw new Error('I don\'t understand this type');
 	};
 };
 
-​export const RemoveTaskAC = (taskId: string, todolistId: string): RemoveTaskActionType => {
-	return { type: 'REMOVE-TASK', taskId: taskId, todolistId: todolistId };
+export const RemoveTaskAC = (taskId: string, todolistId: string): RemoveTaskActionType => {
+	return { type: 'REMOVE-TASK', taskId, todolistId };
 };
 
 export const addTaskAC = (title: string, todolistId: string): AddTaskActionType => {
-	return { type: 'ADD-TASK', title: title, todolistId: todolistId};
+	return { type: 'ADD-TASK', title, todolistId };
 };
 
 export const changeTaskStatusAC = (id: string, isDone: boolean, todolistId: string): ChangeTaskStatusActionType => {
-	return { type: 'CHANGE-TASK-STATUS', id: id, isDone: isDone, todolistId: todolistId };
+	return { type: 'CHANGE-TASK-STATUS', id, isDone, todolistId };
 };
 
 export const changeTaskTitleAC = (id: string, title: string, todolistId: string): ChangeTaskTitleActionType => {
-	return { type: 'CHANGE-TASK-TITLE', id: id, todolistId: todolistId, title: title };
+	return { type: 'CHANGE-TASK-TITLE', id, todolistId, title };
 };
