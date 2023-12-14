@@ -37,14 +37,18 @@ export const todolistsReducer = (state: Array<TodolistType>, action: ActionsType
 		case 'REMOVE-TODOLIST':
 			const newState = state.filter(todolist => todolist.id !== action.id);
 			return [...newState];
+
 		case 'ADD-TODOLIST':
 			return [...state, { id: action.todolistId, title: action.title, filter: "all" }];
+
 		case 'CHANGE-TODOLIST-TITLE':
 			const newTitle = state.map(el => el.id === action.id ? { ...el, title: action.title } : el);
 			return [...newTitle];
+
 		case 'CHANGE-TODOLIST-FILTER':
 			const newFilter = state.map(el => el.id === action.id && el.filter !== action.filter ? { ...el, filter: action.filter } : el);
 			return [...newFilter];
+			
 		default:
 			throw new Error('I don\'t understand this type');
 	};
