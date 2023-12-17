@@ -11,7 +11,7 @@ export type RemoveTaskActionType = {
 export type AddTaskActionType = {
 	type: 'ADD-TASK';
 	title: string;
-	todolistId: string
+	todolistId: string;
 };
 
 export type ChangeTaskStatusActionType = {
