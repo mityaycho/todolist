@@ -4,8 +4,8 @@ import './App.css';
 import { v1 } from 'uuid';
 import AddItemForm from './Components/AddItemForm';
 import { AppBar, Button, Container, Grid, IconButton, Menu, Paper, Toolbar, Typography } from '@mui/material';
-import { addTodolistAC, todolistsReducer, ChangeTodolistFilterAC, removeTodolistAC, changeTodolistFilterAC } from './state/todolists-reducer';
-import { tasksReducer } from './state/tasks-reducer';
+import { addTodolistAC, todolistsReducer, changeTodolistFilterAC, removeTodolistAC } from './state/todolists-reducer';
+import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer } from './state/tasks-reducer';
 
 export type TasksStateType = {
 	[key: string]: Array<TaskType>;
@@ -43,38 +43,46 @@ function AppWithReducers() {
 	};
 
 	function addTask(title: string, todolistId: string) {
-		const task = { id: v1(), title: title.trim(), isDone: false };
-		const todolistTasks = tasks[todolistId];
+		// const task = { id: v1(), title: title.trim(), isDone: false };
+		// const todolistTasks = tasks[todolistId];
 
-		tasks[todolistId] = [task, ...todolistTasks];
-		title.trim() !== "" ? dispatchToTasks({ ...tasks }) : setError("Title is required");
+		// tasks[todolistId] = [task, ...todolistTasks];
+		// title.trim() !== "" ? dispatchToTasks({ ...tasks }) : setError("Title is required");
+		const action = addTaskAC(title, todolistId);
+		dispatchToTasks(action);
 	};
 
 	const removeTask = (taskId: string, todolistId: string) => {
-		let todolistTasks = tasks[todolistId];
+		// let todolistTasks = tasks[todolistId];
 
-		tasks[todolistId] = todolistTasks.filter(task => task.id !== taskId);
-		dispatchToTasks({ ...tasks });
+		// tasks[todolistId] = todolistTasks.filter(task => task.id !== taskId);
+		// dispatchToTasks({ ...tasks });
+		const action = removeTaskAC(taskId, todolistId);
+		dispatchToTasks(action);
 	};
 
 	const changeTaskStatus = (id: string, isDone: boolean, todolistId: string) => {
-		let todolistTasks = tasks[todolistId];
-		const task = todolistTasks.find(task => task.id === id);
+		// let todolistTasks = tasks[todolistId];
+		// const task = todolistTasks.find(task => task.id === id);
 
-		if (task) {
-			task.isDone = isDone;
-			dispatchToTasks({ ...tasks });
-		};
+		// if (task) {
+		// 	task.isDone = isDone;
+		// 	dispatchToTasks({ ...tasks });
+		// };
+		const action = changeTaskStatusAC(id, isDone, todolistId);
+		dispatchToTasks(action);
 	};
 
 	const changeTaskTitle = (id: string, newTitle: string, todolistId: string) => {
-		let todolistTasks = tasks[todolistId];
-		const task = todolistTasks.find(task => task.id === id);
+		// let todolistTasks = tasks[todolistId];
+		// const task = todolistTasks.find(task => task.id === id);
 
-		if (task) {
-			task.title = newTitle;
-			dispatchToTasks({ ...tasks });
-		};
+		// if (task) {
+		// 	task.title = newTitle;
+		// 	dispatchToTasks({ ...tasks });
+		// };
+		const action = changeTaskTitleAC(id, newTitle, todolistId);
+		dispatchToTasks(action);
 	};
 
 	const changeTodolistTitle = (todolistId: string, newTitle: string) => {
@@ -83,7 +91,7 @@ function AppWithReducers() {
 		// 	todolist.title = newTitle;
 		// 	dispatchToTodolist([...todolists]);
 		// };
-		const action = ChangeTodolistFilterAC(todolistId, newTitle);
+		const action = changeTodolistFilterAC(todolistId, newTitle);
 		dispatchToTodolist(action);
 	};
 
