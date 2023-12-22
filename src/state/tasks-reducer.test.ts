@@ -1,4 +1,4 @@
-import { RemoveTaskAC, addTaskAC, changeTaskStatusAC, changeTaskTitleAC, tasksReducer } from './tasks-reducer'
+import { removeTaskAC, addTaskAC, changeTaskStatusAC, changeTaskTitleAC, tasksReducer } from './tasks-reducer'
 import { TasksStateType } from '../App'
 import { addTodolistAC } from './todolists-reducer';
 
@@ -20,7 +20,7 @@ beforeEach( () => {
 })
 
 test('correct task should be deleted from correct array', () => {
-	const action = RemoveTaskAC('2', 'todolistId2');
+	const action = removeTaskAC('2', 'todolistId2');
 
 	const endState = tasksReducer(startState, action);
 

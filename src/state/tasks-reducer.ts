@@ -67,7 +67,7 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksS
 	};
 };
 
-export const RemoveTaskAC = (taskId: string, todolistId: string): RemoveTaskActionType => {
+export const removeTaskAC = (taskId: string, todolistId: string): RemoveTaskActionType => {
 	return { type: 'REMOVE-TASK', taskId, todolistId };
 };
 

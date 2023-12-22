@@ -1,6 +1,6 @@
 import { TasksStateType } from '../App';
 import { TodolistType } from '../Components/Todolist';
-import { RemoveTodolistAC, addTodolistAC, todolistsReducer } from './todolists-reducer';
+import { removeTodolistAC, addTodolistAC, todolistsReducer } from './todolists-reducer';
 import { tasksReducer } from './tasks-reducer';
 
 
@@ -35,7 +35,7 @@ import { tasksReducer } from './tasks-reducer';
 			]
 	}
 
-	const action = RemoveTodolistAC('todolistId2')
+	const action = removeTodolistAC('todolistId2')
 
 	const endState = tasksReducer(startState, action)
 

@@ -1,5 +1,5 @@
 import { TodolistType } from '../Components/Todolist';
-import { addTodolistAC, RemoveTodolistAC, todolistsReducer } from './todolists-reducer';
+import { addTodolistAC, removeTodolistAC, todolistsReducer } from './todolists-reducer';
 import { v1 } from 'uuid';
 
 let todolistId1: string;
@@ -17,7 +17,7 @@ beforeEach(() => {
 
 
 test('correct todolist should be removed', () => {
-	const endState = todolistsReducer(startState, RemoveTodolistAC(todolistId1));
+	const endState = todolistsReducer(startState, removeTodolistAC(todolistId1));
 
 	expect(endState.length).toBe(1);
 	expect(endState[0].id).toBe(todolistId2);

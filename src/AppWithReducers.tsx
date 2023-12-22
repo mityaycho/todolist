@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 import { TaskType, Todolist, TodolistType } from './Components/Todolist';
 import './App.css';
 import { v1 } from 'uuid';
 import AddItemForm from './Components/AddItemForm';
 import { AppBar, Button, Container, Grid, IconButton, Menu, Paper, Toolbar, Typography } from '@mui/material';
+import { addTodolistAC, todolistsReducer, ChangeTodolistFilterAC, removeTodolistAC, changeTodolistFilterAC } from './state/todolists-reducer';
+import { tasksReducer } from './state/tasks-reducer';
 
 export type TasksStateType = {
 	[key: string]: Array<TaskType>;
@@ -15,12 +17,12 @@ function AppWithReducers() {
 	let todolistID1 = v1();
 	let todolistID2 = v1();
 
-	let [todolists, setTodolists] = useState<Array<TodolistType>>([
+	let [todolists, dispatchToTodolist] = useReducer(todolistsReducer, [
 		{ id: todolistID1, title: 'What to learn', filter: 'all' },
 		{ id: todolistID2, title: 'What to buy', filter: 'all' },
 	]);
 
-	let [tasks, setTasks] = useState<TasksStateType>({
+	let [tasks, dispatchToTasks] = useReducer(tasksReducer, {
 		[todolistID1]: [
 			{ id: v1(), title: 'HTML&CSS', isDone: true },
 			{ id: v1(), title: 'JS', isDone: true },
@@ -45,14 +47,14 @@ function AppWithReducers() {
 		const todolistTasks = tasks[todolistId];
 
 		tasks[todolistId] = [task, ...todolistTasks];
-		title.trim() !== "" ? setTasks({ ...tasks }) : setError("Title is required");
+		title.trim() !== "" ? dispatchToTasks({ ...tasks }) : setError("Title is required");
 	};
 
 	const removeTask = (taskId: string, todolistId: string) => {
 		let todolistTasks = tasks[todolistId];
 
 		tasks[todolistId] = todolistTasks.filter(task => task.id !== taskId);
-		setTasks({ ...tasks });
+		dispatchToTasks({ ...tasks });
 	};
 
 	const changeTaskStatus = (id: string, isDone: boolean, todolistId: string) => {
@@ -61,7 +63,7 @@ function AppWithReducers() {
 
 		if (task) {
 			task.isDone = isDone;
-			setTasks({ ...tasks });
+			dispatchToTasks({ ...tasks });
 		};
 	};
 
@@ -71,39 +73,48 @@ function AppWithReducers() {
 
 		if (task) {
 			task.title = newTitle;
-			setTasks({ ...tasks });
+			dispatchToTasks({ ...tasks });
 		};
 	};
 
 	const changeTodolistTitle = (todolistId: string, newTitle: string) => {
-		const todolist = todolists.find(tl => tl.id === todolistId);
-		if (todolist) {
-			todolist.title = newTitle;
-			setTodolists([...todolists]);
-		};
+		// const todolist = todolists.find(tl => tl.id === todolistId);
+		// if (todolist) {
+		// 	todolist.title = newTitle;
+		// 	dispatchToTodolist([...todolists]);
+		// };
+		const action = ChangeTodolistFilterAC(todolistId, newTitle);
+		dispatchToTodolist(action);
 	};
 
 	const changeFilter = (id: string, value: string) => {
-		let todolist = todolists.find(tl => tl.id === id);
+		// let todolist = todolists.find(tl => tl.id === id);
 
-		if (todolist) {
-			todolist.filter = value;
-			setTodolists([...todolists]);
-		};
+		// if (todolist) {
+		// 	todolist.filter = value;
+		// 	dispatchToTodolist([...todolists]);
+		// };
+		const action = changeTodolistFilterAC(id, value);
+		dispatchToTodolist(action);
 	};
 
 	const removeTodoList = (id: string) => {
-		setTodolists(todolists.filter(todolist => todolist.id !== id));
-		delete tasks[id];
-		setTasks({ ...tasks });
+		// dispatchToTodolist(todolists.filter(todolist => todolist.id !== id));
+		// delete tasks[id];
+		// dispatchToTasks({ ...tasks });
+		const action = removeTodolistAC(id);
+		dispatchToTodolist(action);
 	};
 
 	const addTodolist = (title: string) => {
-		const newTodolistId = v1();
-		const newTodolist: TodolistType = { id: newTodolistId, title: title, filter: "All" };
+		// const newTodolistId = v1();
+		// const newTodolist: TodolistType = { id: newTodolistId, title: title, filter: "All" };
 
-		setTodolists([newTodolist, ...todolists]);
-		setTasks({ ...tasks, [newTodolistId]: [] });
+		// dispatchToTodolist([newTodolist, ...todolists]);
+		// dispatchToTasks({ ...tasks, [newTodolistId]: [] });
+		const action = addTodolistAC(title);
+		dispatchToTasks(action);
+		dispatchToTodolist(action);
 	};
 
 	return (
