@@ -10,7 +10,7 @@ import { tasksReducer } from './tasks-reducer';
 
 	const action = addTodolistAC('new todolist');
 
-	const endTasksState = tasksReducer(startTasksState, action)
+	const endTasksState = tasksReducer(startTasksState, action);
 	const endTodolistsState = todolistsReducer(startTodolistsState, action)
 
 	const keys = Object.keys(endTasksState)
