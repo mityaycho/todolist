@@ -33,10 +33,12 @@ type ActionsType = RemoveTaskActionType |
 	ChangeTaskStatusActionType |
 	ChangeTaskTitleActionType | AddTodolistActionType | RemoveTodolistActionType;
 
+	const initialState: TasksStateType = {};
+
 // меня вызовут и дадут мне стейт (почти всегда объект)
 // и инструкцию (action, тоже объект)
 // согласно прописанному type в этом action (инструкции) я поменяю state
-export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksStateType => {
+export const tasksReducer = (state: TasksStateType = initialState, action: ActionsType): TasksStateType => {
 	switch (action.type) {
 		case 'REMOVE-TASK':
 			const newState = state[action.todolistId].filter(task => task.id !== action.taskId);
@@ -63,7 +65,7 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksS
 			return stateCopy;
 			
 		default:
-			throw new Error('I don\'t understand this type');
+			return state;
 	};
 };
 
