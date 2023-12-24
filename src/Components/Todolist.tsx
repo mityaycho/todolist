@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import { Button } from "./Button";
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
@@ -72,11 +72,11 @@ export function Todolist(props: PropsType) {
 		)
 	});
 
-	const addTask = (title: string) => {
+	const addTask = useCallback((title: string) => {
 		props.addTask(title, props.id);
 		addMessage(title);
 		// setTitle("");
-	};
+	}, []);
 
 
 

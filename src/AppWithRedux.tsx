@@ -9,16 +9,17 @@ import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksRe
 import { useSelector } from 'react-redux';
 import { AppRootStateType } from './state/store';
 import { useDispatch } from 'react-redux';
+import React from 'react';
 
 export type TasksStateType = {
 	[key: string]: Array<TaskType>;
 };
 
 
-function AppWithRedux () {
+export const AppWithRedux = React.memo(() => {
 
-	let todolistID1 = v1();
-	let todolistID2 = v1();
+	// let todolistID1 = v1();
+	// let todolistID2 = v1();
 
 	// let [todolists, dispatch] = useReducer(todolistsReducer, [
 	// 	{ id: todolistID1, title: 'What to learn', filter: 'all' },
@@ -187,6 +188,6 @@ function AppWithRedux () {
 
 		</div>
 	);
-};
+});
 
 export default AppWithRedux ;
