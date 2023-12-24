@@ -1,7 +1,5 @@
 import { IconButton } from '@mui/material';
 
-
-
 type ButtonType = {
 	name: any;
 	classNameStatus: string;
