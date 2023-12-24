@@ -87,7 +87,7 @@ export const Todolist = React.memo((props: PropsType) => {
 		props.addTask(title, props.id);
 		addMessage(title);
 		// setTitle("");
-	}, []);
+	}, [props.addTask, props.id]);
 
 
 
