@@ -6,6 +6,7 @@ import { Delete } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
 import FilterTasksButtons from "./FilterTasksButtons";
 import { v1 } from "uuid";
+import React from "react";
 
 export type TaskType = {
 	id: string;
@@ -35,7 +36,7 @@ export type TodolistType = {
 	filter: string;
 };
 
-export function Todolist(props: PropsType) {
+export const Todolist = React.memo((props: PropsType) {
 
 	const deleteIcon = <Delete />;
 
@@ -105,4 +106,4 @@ export function Todolist(props: PropsType) {
 			<FilterTasksButtons filter={props.filter} id={props.id} filterTasks={props.filterTasks} />
 		</div>
 	);
-};
+});
