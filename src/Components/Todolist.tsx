@@ -75,7 +75,7 @@ export const Todolist = React.memo((props: PropsType) => {
 
 	const inputs = tasksForTodoList.map((el) => {
 		return (
-			<li key={v1()} className={el.isDone ? "is-done" : ""}>
+			<li key={el.id} className={el.isDone ? "is-done" : ""}>
 				<Checkbox color="primary" checked={el.isDone} onChange={(e) => onChangeStatusHandler(el.id, e)} />
 				<EditableSpan title={el.title} onChange={(e) => onChangeTitleHandler(el.id, e)} />
 				<Button classNameStatus="" name={deleteIcon} callBack={() => props.removeTask(el.id, props.id)} />

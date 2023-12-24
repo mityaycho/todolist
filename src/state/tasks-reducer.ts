@@ -33,7 +33,7 @@ type ActionsType = RemoveTaskActionType |
 	ChangeTaskStatusActionType |
 	ChangeTaskTitleActionType | AddTodolistActionType | RemoveTodolistActionType;
 
-	const initialState: TasksStateType = {};
+const initialState: TasksStateType = {};
 
 // меня вызовут и дадут мне стейт (почти всегда объект)
 // и инструкцию (action, тоже объект)
@@ -49,8 +49,14 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
 			return { ...state, [action.todolistId]: [task, ...state[action.todolistId]] };
 
 		case 'CHANGE-TASK-STATUS':
-			const changeTask = state[action.todolistId].map(el => el.id === action.taskId ? { ...el, isDone: action.isDone } : el);
-			return { ...state, [action.todolistId]: changeTask };
+			let todolistTasks = state[action.todolistId];
+			const taskStatus = todolistTasks.find(task => task.id === action.taskId);
+
+			if (taskStatus) {
+				taskStatus.isDone = action.isDone;
+			};
+			state[action.todolistId] = [...todolistTasks];
+			return { ...state };
 
 		case 'CHANGE-TASK-TITLE':
 			const changeTitle = state[action.todolistId].map(el => el.id === action.taskId && el.title !== action.title ? { ...el, title: action.title } : el);
@@ -63,7 +69,7 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
 			const stateCopy = { ...state };
 			delete stateCopy[action.id];
 			return stateCopy;
-			
+
 		default:
 			return state;
 	};

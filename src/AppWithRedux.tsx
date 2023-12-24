@@ -129,7 +129,6 @@ export const AppWithRedux = React.memo(() => {
 		// dispatchToTasks({ ...tasks, [newTodolistId]: [] });
 		const action = addTodolistAC(title);
 		dispatch(action);
-		dispatch(action);
 	}, []);
 
 	return (
