@@ -68,7 +68,7 @@ test('title of specified task should be changed', () => {
 });
 
 ​test('new array should be added when new todolist is added', () => {
-	const action = addTodolistAC('title no matter')
+	const action = addTodolistAC('title no matter');
 
 	const endState = tasksReducer(startState, action)
 
