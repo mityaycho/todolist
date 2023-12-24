@@ -36,7 +36,7 @@ export type TodolistType = {
 	filter: string;
 };
 
-export const Todolist = React.memo((props: PropsType) {
+export const Todolist = React.memo((props: PropsType) => {
 
 	const deleteIcon = <Delete />;
 

@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react';
+import { useCallback, useReducer, useState } from 'react';
 import { TaskType, Todolist, TodolistType } from './Components/Todolist';
 import './App.css';
 import { v1 } from 'uuid';
@@ -49,7 +49,7 @@ export const AppWithRedux = React.memo(() => {
 		error !== null && setError(null);
 	};
 
-	function addTask(title: string, todolistId: string) {
+	const addTask = useCallback((title: string, todolistId: string) => {
 		// const task = { id: v1(), title: title.trim(), isDone: false };
 		// const todolistTasks = tasks[todolistId];
 
@@ -57,18 +57,18 @@ export const AppWithRedux = React.memo(() => {
 		// title.trim() !== "" ? dispatchToTasks({ ...tasks }) : setError("Title is required");
 		const action = addTaskAC(title, todolistId);
 		dispatch(action);
-	};
+	}, []);
 
-	const removeTask = (taskId: string, todolistId: string) => {
+	const removeTask = useCallback((taskId: string, todolistId: string) => {
 		// let todolistTasks = tasks[todolistId];
 
 		// tasks[todolistId] = todolistTasks.filter(task => task.id !== taskId);
 		// dispatchToTasks({ ...tasks });
 		const action = removeTaskAC(taskId, todolistId);
 		dispatch(action);
-	};
+	}, []);
 
-	const changeTaskStatus = (id: string, isDone: boolean, todolistId: string) => {
+	const changeTaskStatus = useCallback((id: string, isDone: boolean, todolistId: string) => {
 		// let todolistTasks = tasks[todolistId];
 		// const task = todolistTasks.find(task => task.id === id);
 
@@ -78,9 +78,9 @@ export const AppWithRedux = React.memo(() => {
 		// };
 		const action = changeTaskStatusAC(id, isDone, todolistId);
 		dispatch(action);
-	};
+	}, []);
 
-	const changeTaskTitle = (id: string, newTitle: string, todolistId: string) => {
+	const changeTaskTitle = useCallback((id: string, newTitle: string, todolistId: string) => {
 		// let todolistTasks = tasks[todolistId];
 		// const task = todolistTasks.find(task => task.id === id);
 
@@ -90,9 +90,9 @@ export const AppWithRedux = React.memo(() => {
 		// };
 		const action = changeTaskTitleAC(id, newTitle, todolistId);
 		dispatch(action);
-	};
+	}, []);
 
-	const changeTodolistTitle = (todolistId: string, newTitle: string) => {
+	const changeTodolistTitle = useCallback((todolistId: string, newTitle: string) => {
 		// const todolist = todolists.find(tl => tl.id === todolistId);
 		// if (todolist) {
 		// 	todolist.title = newTitle;
@@ -100,9 +100,9 @@ export const AppWithRedux = React.memo(() => {
 		// };
 		const action = changeTodolistFilterAC(todolistId, newTitle);
 		dispatch(action);
-	};
+	}, []);
 
-	const changeFilter = (id: string, value: string) => {
+	const changeFilter = useCallback((id: string, value: string) => {
 		// let todolist = todolists.find(tl => tl.id === id);
 
 		// if (todolist) {
@@ -111,17 +111,17 @@ export const AppWithRedux = React.memo(() => {
 		// };
 		const action = changeTodolistFilterAC(id, value);
 		dispatch(action);
-	};
+	}, []);
 
-	const removeTodoList = (id: string) => {
+	const removeTodoList = useCallback((id: string) => {
 		// dispatch(todolists.filter(todolist => todolist.id !== id));
 		// delete tasks[id];
 		// dispatchToTasks({ ...tasks });
 		const action = removeTodolistAC(id);
 		dispatch(action);
-	};
+	}, []);
 
-	const addTodolist = (title: string) => {
+	const addTodolist = useCallback((title: string) => {
 		// const newTodolistId = v1();
 		// const newTodolist: TodolistType = { id: newTodolistId, title: title, filter: "All" };
 
@@ -130,7 +130,7 @@ export const AppWithRedux = React.memo(() => {
 		const action = addTodolistAC(title);
 		dispatch(action);
 		dispatch(action);
-	};
+	}, []);
 
 	return (
 		<div className="App">
