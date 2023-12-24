@@ -17,7 +17,7 @@ beforeEach( () => {
 			{ id: '3', title: 'tea', isDone: false }
 		]
 	};
-})
+});
 
 test('correct task should be deleted from correct array', () => {
 	const action = removeTaskAC('2', 'todolistId2');
