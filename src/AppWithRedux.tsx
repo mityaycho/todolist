@@ -154,15 +154,6 @@ export const AppWithRedux = React.memo(() => {
 					{
 						todolists.map(todolist => {
 							let allTodolistTasks = tasks[todolist.id];
-							let tasksForTodoList = allTodolistTasks;
-
-							if (todolist.filter === "Active") {
-								tasksForTodoList = allTodolistTasks.filter(t => !t.isDone);
-							};
-
-							if (todolist.filter === "Completed") {
-								tasksForTodoList = allTodolistTasks.filter(t => t.isDone);
-							};
 							return <Grid key={todolist.id} item>
 								<Paper style={{ padding: "10px" }}>
 									<Todolist
@@ -171,7 +162,7 @@ export const AppWithRedux = React.memo(() => {
 										filter={todolist.filter}
 										error={error}
 										setError={changeSetError}
-										tasks={tasksForTodoList}
+										tasks={allTodolistTasks}
 										removeTask={removeTask}
 										filterTasks={changeFilter}
 										addTask={addTask}
