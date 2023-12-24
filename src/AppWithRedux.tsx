@@ -45,7 +45,7 @@ function AppWithRedux () {
 	const [error, setError] = useState<string | null>(null);
 
 	const changeSetError = () => {
-		setError(null);
+		error !== null && setError(null);
 	};
 
 	function addTask(title: string, todolistId: string) {
