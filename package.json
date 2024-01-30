@@ -33,7 +33,7 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "test": "jest",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "start-storybook -p 9009",
     "build-storybook": "storybook build"
   },
   "eslintConfig": {
