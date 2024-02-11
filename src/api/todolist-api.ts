@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const settings = {
+	baseURL: 'https://social-network.samuraijs.com/api/1.1/',
 	withCredentials: true,
 	headers: {
 		// Не забываем заменить API-KEY на собственный
