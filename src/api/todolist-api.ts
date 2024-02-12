@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CreateTodolist } from './../stories/todolists-api.stories';
+
 
 type TodolistType = {
 	id: string;
@@ -8,24 +8,8 @@ type TodolistType = {
 	order: string;
 };
 
-type CreateTodolistType = {
-	data: {
-		item: TodolistType
-	};
-	messages: Array<string>;
-	fieldsErrors: string[];
-	resultCode: number;
-};
-
-type DeleteTodolistType = {
-	data: {};
-	messages: string[];
-	fieldsErrors: string[];
-	resultCode: number;
-};
-
-type UpdateTodolistType = {
-	data: {};
+export type ResponseType<D> = {
+	data: D;
 	messages: string[];
 	fieldsErrors: string[];
 	resultCode: number;
@@ -46,15 +30,15 @@ export const todolistAPI = {
 		return promise;
 	},
 	createTodolist(title: string) {
-		const promise = instance.post<CreateTodolistType>('todo-lists', { title });
+		const promise = instance.post<ResponseType<{ item: TodolistType }>>('todo-lists', { title });
 	return promise;
 	},
 	deleteTodolist(todolistId: string) {
-		const promise = instance.delete<DeleteTodolistType>(`todo-lists/${todolistId}`)
+		const promise = instance.delete<ResponseType<{}>>(`todo-lists/${todolistId}`)
 		return promise;
 	},
 	updateTodolist(todolistId: string, title: string) {
-		const promise = instance.put<UpdateTodolistType>(`todo-lists/${todolistId}`, { title });
+		const promise = instance.put<ResponseType<{}>>(`todo-lists/${todolistId}`, { title });
 		return promise;
 	}
 };
