@@ -1,0 +1,24 @@
+{
+	"configurations": [
+		
+		{
+			"type": "node",
+			"name": "vscode-jest-tests.v2.1-todolist",
+			"request": "launch",
+			"args": [
+				"test",
+				"--runInBand",
+				"--watchAll=false",
+				"--testNamePattern",
+				"${jest.testNamePattern}",
+				"--runTestsByPath",
+				"${jest.testFile}"
+			],
+			"cwd": "c:\\My_files\\incubator\\1-todolist",
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"disableOptimisticBPs": true,
+			"runtimeExecutable": "yarn"
+		}
+	]
+}
