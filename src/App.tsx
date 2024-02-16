@@ -15,7 +15,7 @@ import {
 	addTodolistAC,
 	changeTodolistFilterAC,
 	changeTodolistTitleAC,
-	fetchTodolistsThunk,
+	fetchTodolistsTC,
 	FilterValuesType,
 	removeTodolistAC,
 	TodolistDomainType
@@ -35,11 +35,11 @@ function App() {
 
 	const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todolists)
 	const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
-	const dispatch = useDispatch();
+	const dispatch: any = useDispatch();
 
 	useEffect(() => {
-		dispatch(fetchTodolistsThunk);
-	}, [])
+		dispatch(fetchTodolistsTC());
+	}, []);
 
 	const removeTask = useCallback(function (id: string, todolistId: string) {
 		const action = removeTaskAC(id, todolistId);

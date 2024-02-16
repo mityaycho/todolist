@@ -1,7 +1,6 @@
 import { v1 } from 'uuid';
 import { TodolistType, todolistsAPI } from '../api/todolists-api';
 import { Dispatch } from 'redux';
-import { setTodolistsTasksAC } from './tasks-reducer';
 
 
 export type SetTodolistsActionType = {
@@ -100,7 +99,9 @@ export const setTodolistsAC = (todolists: Array<TodolistType>): SetTodolistsActi
 	return { type: 'SET-TODOLISTS', todolists }
 }
 
-export const fetchTodolistsThunk = (dispatch: Dispatch) => {
-	todolistsAPI.getTodolists()
+export const fetchTodolistsTC = () => {
+	return (dispatch: Dispatch) => {
+		todolistsAPI.getTodolists()
 			.then((res) => dispatch(setTodolistsAC(res.data)))
+	}
 }
